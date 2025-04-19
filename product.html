@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+
+    <style>
+        body {
+            background-color: #e6d8ba;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+    
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: rgb(109, 33, 5);
+            font-size: medium;
+        }
+    
+        .form-control {
+            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            border: 1px solid #ccc;
+        }
+    
+        .col1 {
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            background-image: url(1.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: bottom;
+            height: 18rem;
+        }
+    
+        .details {
+            margin-bottom: 3rem;
+            color: rgb(243, 224, 199);
+        }
+    
+        .card {
+            background-color: #806453;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    
+        .btn-primary {
+            background-color: #86ac8e;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+    
+        .btn-primary:hover {
+            background-color: #6c9477;
+            transform: scale(1.05);
+            color: #fff;
+        }
+    
+        /* Tablet & smaller desktop */
+        @media (max-width: 992px) {
+            ul.navbar-nav {
+                margin-left: 0 !important;
+                justify-content: center;
+                width: 100%;
+            }
+    
+            .col1 h1 {
+                font-size: 1.5rem !important;
+                margin-left: 0 !important;
+            }
+    
+            .col1 {
+                height: auto;
+                padding: 2rem 1rem;
+                background-position: center;
+            }
+    
+            .details {
+                padding: 1rem;
+                font-size: 1rem;
+                text-align: center;
+            }
+    
+            .card {
+                margin-bottom: 2rem;
+            }
+    
+            .row.align-items-start .col {
+                margin-left: 0 !important;
+            }
+    
+            article {
+                height: auto !important;
+                padding-bottom: 3rem;
+            }
+        }
+    
+        /* Mobile */
+        @media (max-width: 768px) {
+            .container.text-center > .row {
+                flex-direction: column;
+                align-items: center !important;
+            }
+    
+            .card {
+                width: 90% !important;
+                height: auto !important;
+            }
+    
+            .col-md-6.d-flex {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+            }
+    
+            .col-md-6.d-flex img {
+                margin: 1rem auto !important;
+            }
+    
+            .container.mt-4 {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+    
+            .col h1,
+            .col p {
+                text-align: center !important;
+            }
+    
+            .container > p {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+    </style>
+    
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+</head>
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 32rem;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="product.html">Product</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Services</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Our Locations</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button style="width: 5rem; height: 2rem; border-radius: 10cm; background-color: rgb(109, 33, 5) ; font-size: small; color: white; border-color: transparent ;" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+<body>
+    <div class="container text-center">
+        <div class="row align-items-start">
+          <div class="col1">
+            <h1 style="color: antiquewhite; margin-top: 3rem;  font-size: 2cm;"> Sustainable Alfresco     </h1>
+            <h1 style="color: antiquewhite; margin-left: 2rem; font-size: 2cm;">  Cafe    </h1>
+          </div>
+
+          <div class="col2">
+            <h3 class="details" style=" color: rgb(109, 33, 5);">Come unwind at Alfresco Café, where fresh brews meet a cozy outdoor vibe perfect for relaxing or catching up with friends. Taste the difference with our handcrafted coffees, delicious pastries, and warm service — your new favorite hangout spot awaits!</h3>
+            <div class="container text-center" style="margin-top: 8rem;">
+                <div class="row align-items-start">
+                  <div class="col" style="margin-left: 6rem;">
+                    <div class="card" style="width: 18rem; height: 21rem;">
+                        <img src="2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title" style="font-size: 20px;">Coffee Drinks</h5>
+                          <div class="container text-center">
+                            <div class="row align-items-start">
+                              <div class="col">
+                                 <p class="card-text" style="font-size: 14px;">Coffee Drinks to vibe your mood :)</p>
+                              </div>
+                              <div class="col">
+                                <a href="#" class="btn btn-primary">Order</a>
+                              </div>
+                             
+                            </div>
+                          </div>
+                         
+                          
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div class="col">
+                    <div class="card" style="width: 18rem; height: 21rem;">
+                        <img src="4..png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Soup and Salads</h5>
+                          <div class="container text-center">
+                            <div class="row align-items-start">
+                              <div class="col">
+                                 <p class="card-text" style="font-size: 14px;"> Soup and Salads to make your mood healthy :)</p>
+                              </div>
+                              <div class="col">
+                                <a href="#" class="btn btn-primary">Order</a>
+                              </div>
+                             
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                    <div class="card" style="width: 18rem; height: 21rem;">
+                        <img src="3.png" class="card-img-top" alt="..." style="height: 12rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Pastries and Desserts</h5>
+                          <div class="container text-center">
+                            <div class="row align-items-start">
+                              <div class="col">
+                                 <p class="card-text" style="font-size: 14px;" >Pastries and Desserts to sweeten your mood:)</p>
+                              </div>
+                              <div class="col">
+                                <a href="#" class="btn btn-primary">Order</a>
+                              </div>
+                             
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
+          
+        </div>
+      </div>
+    
+      <h1 class="text-center" style="margin-top: 10rem; color:  rgb(109, 33, 5); margin-bottom: 5rem ;"> Services</h1>
+      <div class="container text-center">
+        <div class="row align-items-start">
+      
+          <!-- Fiber Wi-Fi -->
+          <div class="col-md-6 d-flex align-items-start mb-4">
+            <img src="5.png" alt="Fiber Wi-Fi" style="width: 120px; height: auto; margin-right: 15px; margin-top: 2rem;">
+            <div>
+              <p style="color: rgb(109, 33, 5); font-size: 25px;"><b>Fiber Wi-Fi</b></p>
+              <p style="text-align: justify;">
+                Internet is the lifeblood of industries today. Thus, we provide you with fiber WiFi connections from three different service providers.
+                We take seamless browsing for your work and research seriously.
+              </p>
+            </div>
+          </div>
+      
+          <!-- Power Outlets -->
+          <div class="col-md-6 d-flex align-items-start mb-4">
+            <img src="8.png" alt="Power Outlets" style="width: 120px; height: auto; margin-right: 15px; margin-top: 2rem;">
+            <div>
+              <p style="color: rgb(109, 33, 5); font-size: 25px;"><b>Power Outlets</b></p>
+              <p style="text-align: justify;">
+                It’s a common experience for us who want to study and work in a coffee shop – we look for outlets to charge our gadgets with.
+                Don’t worry, we have lots of them here.
+              </p>
+            </div>
+          </div>
+      
+          <!-- Complimentary Beverage -->
+          <div class="col-md-6 d-flex align-items-start mb-4">
+            <img src="6.png" alt="Complimentary Beverage" style="width: 120px; height: auto; margin-right: 15px; margin-top: 2rem;">
+            <div>
+              <p style="color: rgb(109, 33, 5); font-size: 25px;"><b>Complimentary Beverage</b></p>
+              <p style="text-align: justify;">
+                We are not just an empty coworking space but a café. Your stay here entitles you to a complimentary drink – either a brewed coffee or iced tea.
+                You can also choose to buy other handcrafted beverages such as frappes and shakes.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 d-flex align-items-start mb-4">
+            <img src="7.png" alt="Complimentary Beverage" style="width: 120px; height: auto; margin-right: 15px; margin-top: 2rem;">
+            <div>
+              <p style="color: rgb(109, 33, 5); font-size: 25px;"><b>Conference Room</b></p>
+              <p style="text-align: justify;">
+                This is for your meetings that need some privacy and we added perks with it too: unlimited brewed coffee and iced tea for eight pax, projector, whiteboard, and two plates of fries.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <h1 class="text-center" style="margin-top: 10rem; color:  rgb(109, 33, 5);">About Us</h1>
+      <div class="container">
+        <p style="font: 20px; padding-left: 5rem; padding-right: 5rem; padding-top: 1rem;">Nestled in the heart of Manolo Fortich, our sustainable Alfresco Café is more than just a place to enjoy a good cup of coffee—it's a space built around community, comfort, and care for the environment. We believe in creating a mindful experience by serving handcrafted beverages and healthy meals in an open-air setting that embraces the natural beauty of Bukidnon. From sourcing local ingredients to using eco-friendly practices, every part of our café is designed to promote sustainability and support local farmers and artisans. Whether you're here to relax, work, or connect with friends, Alfresco Café welcomes you with a cozy vibe and a purpose-driven mission.</p>
+      </div>
+   <article  style="  height: 60vh; margin-top: 10rem; background-color: rgb(109, 33, 5);">
+    <h1 class="text-center" style="color: #b9ad91; padding-top: 2rem;">Contact Us</h1>
+    <div class="container text-center">
+        <div class="row align-items-start">
+            <div class="col">
+                <p style="color: #e6d8ba; text-align: justify; margin-top: 3rem;">
+                  We’d love to hear from you! Whether you have questions, feedback, or just want to say hello, our team is ready to help. Visit us at Alfresco Café in the heart of Manolo Fortich, or reach out through any of the options below:
+                </p>
+              </div>
+              
+              <div class="col">
+                <div class="container mt-4">
+                  <div class="row">
+                    <div class="col" style="padding-left: 4rem;">
+                      <ul style="list-style: none; padding-left: 0; font-size: 16px; color: #e6d8ba; text-align: justify;">
+                        <li style="margin-bottom: 10px;">📍 <strong>Location:</strong> Manolo Fortich, Bukidnon</li>
+                        <li style="margin-bottom: 10px;">📞 <strong>Phone:</strong> 09355959655</li>
+                        <li style="margin-bottom: 10px;">📧 <strong>Email:</strong> MycafeManolo@gmail.com</li>
+                        <li style="margin-bottom: 10px;">⏰ <strong>Open Hours:</strong> Monday to Sunday | 8:00 AM – 8:00 PM</li>
+                        <li>🌿 <strong>Follow us</strong> on Facebook & Instagram for updates and promos!</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              
+              <p style="color: #817965; margin-top: 3rem;">2025 Alfresco Cafe | All Rights Reserved.</p>
+        </div>
+      </div>
+   </article>
+</body>
+</html>
