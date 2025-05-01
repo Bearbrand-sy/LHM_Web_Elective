@@ -26,6 +26,45 @@
         html {
     scroll-behavior: smooth;
 }
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 10px;
+    position: relative;
+    width: 25rem;
+    margin-left: 57rem;
+  }
+  .search__input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ce5641;
+    border-radius: 50rem;
+    flex: 1;
+    padding-left: 2.5rem; 
+  }
+  .search__button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem; 
+  }
+  .search__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .buy-btn {
+  background-color: rgb(89, 136, 86);
+  color: white;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.buy-btn:hover {
+  background-color: rgb(46, 77, 43);
+  transform: scale(1.05);
+} 
     </style>
 </head>
 
@@ -48,9 +87,123 @@
     </ul>
   </div>
 
-<body>
-    
 
-    
+
+
+<body>
+  <div class="search" >
+    <input type="text" class="search__input" placeholder="Search item">
+    <button class="search__button">
+      <img src="search.png" alt="Search Icon" class="search__icon">
+    </button>
+  </div>
+
+
+  <h1 class="text-center" style="margin-top: 3rem;">Products</h1>
+
+
+  <div class="container text-center" style="margin-top: 5rem; height: auto;">
+    <div class="row align-items-start">
+      <div class="col-2 dropdown">
+        <button 
+          class="btn btn-light dropdown-toggle d-flex align-items-center" 
+          type="button" 
+          id="sortByDropdown" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false"
+          style="border: 1px solid  #ce5641; border-radius: 5px; width: 70%;"
+        >
+          Sort by
+          <img src="hambar.png" alt="Sort Icon" style="width: 16px; height: 16px; margin-left: 8px;">
+        </button>
+      
+        <ul class="dropdown-menu" aria-labelledby="sortByDropdown">
+          <li><a class="dropdown-item" href="#" onclick="filterCards('bracelet')">Bracelets</a></li>
+          <li><a class="dropdown-item" href="#" onclick="filterCards('necklace')">Necklaces</a></li>
+          <li><a class="dropdown-item" href="#" onclick="filterCards('earring')">Earrings</a></li>
+          <li><a class="dropdown-item" href="#" onclick="filterCards('all')">All</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-10">
+        <div class="container text-center">
+          <div class="row" id="cardContainer">
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <p class="text-center" style="margin: 7rem 4rem 0rem 4rem;">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident natus dolore quidem optio molestias officiis nobis est. Amet culpa repellendus cum similique, minima excepturi suscipit ab est, labore quod autem!
+  </p>
+  
+
+
+  <footer class="fade-in" style="background-color: #582a22; color: white; padding: 3rem 4rem; margin-top: 10rem;">
+    <div class="flex-container" style="display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+        <div class="col" style="flex: 1; min-width: 250px;">
+            <h3>Contact Us</h3>
+            <p>Email: support@localaccessories.com</p>
+            <p>Phone: +63 912 345 6789</p>
+            <p>Address: 123 Sankanan, Manolo Fortich, Bukidnon, Philippines</p>
+        </div>
+        <div class="col" style="flex: 1; min-width: 250px;">
+            <h3>Quick Links</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#" style="color: white; text-decoration: none;">Home</a></li>
+                <li><a href="#" style="color: white; text-decoration: none;">Products</a></li>
+                <li><a href="#" style="color: white; text-decoration: none;">Services</a></li>
+                <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
+            </ul>
+        </div>
+
+        
+    </div>
+    <p class="text-center" style="margin-top: 2rem; color: rgb(204, 204, 204);">@2025 LHM Jewelry. All Rights Reserved.</p>
+</footer>
+
+
+
+
+
+<!-- Product Modal -->
+<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> <!-- Use modal-lg for more horizontal space -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="buyNowModalLabel">Product Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5">
+            <img id="modalImage" src="" class="img-fluid" alt="Product Image">
+          </div>
+          <div class="col-md-7">
+            <h5 id="modalName"></h5>
+            <p id="modalDescription"></p>
+            <p><strong>Price:</strong> <span id="modalPrice"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="payment.html" class="btn btn-primary">
+          Proceed to Payment
+        </a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 </body>
+
+<script src="effect.js"> </script>
+
 </html>

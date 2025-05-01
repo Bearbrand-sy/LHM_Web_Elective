@@ -22,7 +22,65 @@
             color: #ce5641;
             text-decoration: underline;
         }
-    
+        .payment-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .items-list {
+            width: 45%;
+            border-right: 1px solid #ce5641;
+            padding-right: 20px;
+        }
+
+        .payment-details {
+            width: 45%;
+            padding-left: 20px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ce5641;
+            padding-bottom: 10px;
+        }
+
+        .item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .payment-form input {
+            margin-bottom: 10px;
+        }
+
+        .payment-form button {
+            background-color: #ce5641;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .payment-form button:hover {
+            background-color: #b84a36;
+        }
     </style>
 </head>
 
@@ -46,6 +104,55 @@
   </div>
    
 <body>
-    
+
+  <div class="" style="height: 2rem; width: auto; background-color: #b84a36;"></div>
+
+  <div class="container payment-container" style="margin-top: 5rem;">
+      <!-- Left column: Items in the cart -->
+      <div class="col-md-6">
+        <div class="items-list" id="cartItems">
+          <!-- Items will be injected here -->
+        </div>
+  
+        <div class="total-price" id="totalPrice">
+          <!-- Total price will go here -->
+        </div>
+      </div>
+  
+      <!-- Right column: Payment details -->
+      <div class="col-md-6">
+        <div class="payment-details">
+          <h3>Payment Details</h3>
+          <form class="payment-form">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Shipping Address</label>
+              <input type="text" class="form-control" id="address" placeholder="Enter your address">
+            </div>
+            <div class="mb-3">
+              <label for="card" class="form-label">Credit Card Number</label>
+              <input type="text" class="form-control" id="card" placeholder="Enter card number">
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm Payment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+<div class="" style="height: 2rem; width: auto; background-color: #b84a36; margin-top: 3rem;"></div>
+
+<div class="" style="height: 50vh;"></div>
 </body>
+
+<script src="payment.js"></script>
 </html>
