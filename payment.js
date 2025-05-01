@@ -106,4 +106,79 @@ paymentMethod.addEventListener('change', function () {
   }
 });
 
+// Initialize modal element
+const confirmationModalEl = document.getElementById('confirmationModal');
+const confirmationMessageEl = document.getElementById('confirmationMessage');
+const modalConfirmBtn = document.getElementById('confirmPaymentButtonInModal');
+const triggerBtn = document.getElementById('confirmPaymentButton');
 
+// Initialize the modal with Bootstrap
+const confirmationModal = new bootstrap.Modal(confirmationModalEl);
+
+// Show confirmation modal on button click
+function showConfirmationModal() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add items to your cart before proceeding.');
+        return;
+    }
+
+    // Calculate total amount
+    const totalAmount = cart.reduce((sum, item) => {
+        return sum + parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+    }, 0).toFixed(2); // Calculate total price
+
+    // Set the confirmation message dynamically
+    confirmationMessageEl.innerText = `Are you sure you want to proceed with the payment of ₱${totalAmount}?`;
+
+    // Show the modal
+    confirmationModal.show();
+
+    // Attach a one-time handler for "Confirm Payment" button inside modal
+    modalConfirmBtn.addEventListener('click', onModalConfirm, { once: true });
+}
+
+// Handle the confirm payment logic inside the modal
+function onModalConfirm() {
+    // Proceed with payment (this is just a placeholder alert)
+    alert('Your payment has been confirmed. Thank you for your purchase!');
+
+    // Clear the cart
+    localStorage.removeItem('cart');
+
+    // Clear the form fields
+    const paymentForm = document.getElementById('paymentForm');
+    paymentForm.reset();
+
+    // Optionally, clear dynamic input containers (like shipping address, postal code)
+    document.getElementById('cardInputContainer').classList.add('d-none');
+    document.getElementById('gcashInputContainer').classList.add('d-none');
+    document.getElementById('codInputContainer').classList.add('d-none');
+    document.getElementById('addressContainer').classList.add('d-none');
+    document.getElementById('postalCodeContainer').classList.add('d-none');
+
+    // Hide the modal after payment confirmation
+    confirmationModal.hide();
+
+    // Optionally, reload the page (if you want to reset everything and reload the UI)
+    // location.reload(); // Uncomment this if you want to reload the page after confirmation
+}
+
+// Prevent the form from submitting (reload page) and trigger the modal
+triggerBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    showConfirmationModal();
+});
+
+const orderSummary = JSON.parse(localStorage.getItem('orderSummary'));
+
+if (orderSummary) {
+    // Set the product details in the payment page
+    document.getElementById('paymentImg').src = orderSummary.image;
+    document.getElementById('paymentName').innerText = orderSummary.name;
+    document.getElementById('paymentPrice').innerText = orderSummary.price;
+} else {
+    // Handle the case where the order summary is not found in localStorage
+    document.getElementById('orderSummary').innerHTML = '<p>No order details found. Please add an item to the cart.</p>';
+}
