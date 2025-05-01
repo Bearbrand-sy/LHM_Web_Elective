@@ -18,3 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
+  document.querySelectorAll('.buy-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const productName = this.getAttribute('data-name');
+        const productPrice = this.getAttribute('data-price');
+        const productImg = this.getAttribute('data-img');
+
+        document.getElementById('modalName').innerText = productName;
+        document.getElementById('modalPrice').innerText = productPrice;
+        document.getElementById('modalImg').src = productImg;
+    });
+});

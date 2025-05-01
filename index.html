@@ -8,255 +8,379 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LHM Homepage</title>
 
-<style>
-    body{
-        background-color: rgb(233, 233, 196);
-        font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-    .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    <style>
+        body {
+            background-color: rgb(241, 241, 217);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
 
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
-  }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-  .buy-button {
-    transition: transform 0.3s ease;
-  }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
 
-  .buy-button:hover {
-    transform: scale(0.95);
-  }
+        .buy-button {
+            transition: transform 0.3s ease;
+        }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-in, transform 0.8s ease-in;
-}
+        .buy-button:hover {
+            transform: scale(0.95);
+        }
 
-.fade-in-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-   /* Tablet & smaller desktop */
-   @media (max-width: 992px) {
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-in, transform 0.8s ease-in;
+        }
+
+        .fade-in-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tablet & smaller desktop */
+        @media (max-width: 992px) {
             ul.navbar-nav {
                 margin-left: 0 !important;
                 justify-content: center;
                 width: 100%;
             }
-    
+
             .col1 h1 {
                 font-size: 1.5rem !important;
                 margin-left: 0 !important;
             }
-    
+
             .col1 {
                 height: auto;
                 padding: 2rem 1rem;
                 background-position: center;
             }
-    
+
             .details {
                 padding: 1rem;
                 font-size: 1rem;
                 text-align: center;
             }
-    
+
             .card {
                 margin-bottom: 2rem;
             }
-    
+
             .row.align-items-start .col {
                 margin-left: 0 !important;
             }
-    
+
             article {
                 height: auto !important;
                 padding-bottom: 3rem;
             }
         }
-    
+
         /* Mobile */
         @media (max-width: 768px) {
             .container.text-center > .row {
                 flex-direction: column;
                 align-items: center !important;
             }
-    
+
             .card {
                 width: 90% !important;
                 height: auto !important;
             }
-    
+
             .col-md-6.d-flex {
                 flex-direction: column !important;
                 align-items: center !important;
                 text-align: center;
             }
-    
+
             .col-md-6.d-flex img {
                 margin: 1rem auto !important;
             }
-    
+
             .container.mt-4 {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
             }
-    
+
             .col h1,
             .col p {
                 text-align: center !important;
             }
-    
+
             .container > p {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
             }
         }
-</style>
+        @media (max-width: 768px) {
+    .img {
+        height: 50vh; /* Adjust height for smaller screens */
+        background-position: center center; /* Center background on small screens */
+    }
+
+    .img p {
+        font-size: 1rem; /* Smaller text on mobile */
+        padding: 4rem; /* Adjust padding for smaller screens */
+        max-width: 90%; /* Allow text to take more width on smaller screens */
+    }
+}
+
+        .nav-link {
+            color: black;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ce5641;
+            text-decoration: underline;
+        }
+        
+
+        section {
+         padding: 3rem;
+      }
+
+      .Services {
+         margin-top: 2rem;
+         text-align: center;
+      }
+
+      .service-columns {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: 2rem;
+         padding: 0 3rem;
+      }
+
+      /* Media Queries for responsiveness */
+      @media (max-width: 768px) {
+         .service-columns {
+            grid-template-columns: 1fr;
+         }
+      }
+
+      html {
+    scroll-behavior: smooth;
+}
+    </style>
 
 </head>
-<ul class="nav justify-content-center" style="margin-top: 1.5rem;">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="index.html" style="color: black;">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="product.html" style="color: black;">Products</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#" style="color: black;">Services</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#" style="color: black;">About Us</a>
-  </li>
-</ul>
 
 <body>
+    <div class="d-flex align-items-center" style="margin-top: 1.5rem;">
+        <img src="logo.png" alt="Logo" style="height: 80px; margin-right: 25rem; margin-left: 2rem;">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="product.html">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="container text-center fade-in">
         <div class="row align-items-start">
-          <div class="col">
-            <h1 style="font-size: 79px; margin-top: 8rem; margin-left:0;"> <b>LHM Jewelry</b></h1>
-            <h4>A Local Accessories to enhance beauty</h4>
-            <p style="margin-top: 5rem; color: rgb(121, 55, 55);">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis quibusdam quis voluptate sapiente, necessitatibus similique dolore optio molestiae labore, reiciendis animi incidunt pariatur dolor sit. Impedit officiis in quisquam aut.</p>
-          </div>
-          <div class="col">
-            <div class="img" style=" background-image: url(i.png); background-size: cover; background-position: center; background-repeat: no-repeat; height: 25rem;width: 25rem;margin-top: 4.5rem;margin-left: 3rem;border-radius: 40%;overflow: hidden;border: 4px solid white;">
-</div>
-          </div>
-          
+            <div class="col">
+                <h1 style="font-size: 79px; margin-top: 8rem; margin-left:0;"> <b>LHM Jewelry</b></h1>
+                <h4>A Local Accessories to enhance beauty</h4>
+                <p style="margin-top: 5rem; color: rgb(121, 55, 55);">Discover the beauty of handcrafted expression with our locally made accessories. Each piece is a celebration of culture, creativity, and craftsmanship—designed to help you stand out while supporting our vibrant community of artisans. Whether you're looking for something bold, elegant, or truly one-of-a-kind, you've come to the right place.</p>
+            </div>
+            <div class="col">
+                <div class="img" style=" background-image: url(i.png); background-size: cover; background-position: center; background-repeat: no-repeat; height: 25rem;width: 25rem;margin-top: 4.5rem;margin-left: 3rem;border-radius: 40%;overflow: hidden;border: 4px solid white;">
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <section class="fade-in" style="height: 80vh ;">
-        <div class="products" style=" width: auto; margin-top: 5rem; padding: 5rem;">
-          <h2 style="margin-left:rem;">Hot Trend Local Accessories</h2>
-  
-          <div class="container text-center" style="margin-top: 3rem;">
-              <div class="row align-items-start" style="margin-left: 2.8rem;">
-                <div class="col">
-                  <div class="card" style="width: 18rem; height: 24.3rem; background-color:rgb(121, 55, 55);">
-                    <img src="i.png" alt="" height="250" style="padding: 1rem; margin-bottom: 1rem;">
-                    <p style="color: white; text-align: left; margin-left: 1.5rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-                     3-colored Necklace beads <br>Price: 60 Pesos
-                    </p>
-                    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width: 7rem; margin-left: 8rem;">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card" style="width: 18rem; height: 24.3rem; background-color:rgb(121, 55, 55);">
-                    <img src="i.png" alt="" height="250" style="padding: 1rem; margin-bottom: 1rem;">
-                    <p style="color: white; text-align: left; margin-left: 1.5rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-                     3-colored Necklace beads <br>Price: 60 Pesos
-                    </p>
-                    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width: 7rem; margin-left: 8rem;">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card" style="width: 18rem; height: 24.3rem; background-color:rgb(121, 55, 55);">
-                    <img src="i.png" alt="" height="250" style="padding: 1rem; margin-bottom: 1rem;">
-                    <p style="color: white; text-align: left; margin-left: 1.5rem; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
-                     3-colored Necklace beads <br>Price: 60 Pesos
-                    </p>
-                    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width: 7rem; margin-left: 8rem;">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <p style="margin-top: 7rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque impedit ad repellendus ratione excepturi animi dicta, amet quos architecto delectus eveniet harum suscipit, veritatis unde velit beatae fugit ipsum dolore.</p>
-      </div>
-      </section>
-    
+    <section class="fade-in" style="min-height: 100vh; margin-top: 10rem;">
+        <div class="products" style="padding: 5rem;">
+            <h2 class=" mb-5">Hot Trend Local Accessories</h2>
 
+            <div class="container" style="margin-left: 5rem;">
+                <div class="row justify-content-center g-4">
+                    <!-- Product 1 -->
+                    <div class="col-md-4">
+                        <div class="card h-100" style="border-color: #ce5641; background-color: rgb(255, 236, 207); width: 19rem;">
+                            <img src="brace1.png" alt="3-colored Beads Bracelet" height="250" style="padding: 1rem;">
+                            <div class="card-body">
+                                <p class="text-start">
+                                    3-colored Beads Bracelet <br><b>Price:</b> ₱60
+                                </p>
+                                <button 
+                                  class="buy-btn btn btn-success float-end" 
+                                  data-name="3-colored Beads Bracelet" 
+                                  data-price="₱60" 
+                                  data-img="brace1.png" data-bs-toggle="modal" data-bs-target="#buyModal">
+                                  Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-    <section class="fade-in" style="margin-top: 19rem; height: 50vh;">
-      <div class="service" style=" padding-top: 2rem; ">
-        <div class="flex-container text-center">
-          <div class="row">
-            <div class="col">
-                 <img src="1.png" alt="" > 
-                 <p style="color: rgb(0, 0, 0);">Credit Card
-                  Paymaya , Gcash, BDO
-                 </p>
+                    <!-- Product 2 -->
+                    <div class="col-md-4">
+                        <div class="card h-100" style="border-color: #ce5641; background-color: rgb(255, 236, 207); width: 19rem;">
+                            <img src="neck1.png" alt="3-colored Necklace Beads" height="250" style="padding: 1rem;">
+                            <div class="card-body">
+                                <p class="text-start">
+                                    3-colored Necklace Beads <br><b>Price:</b> ₱80
+                                </p>
+                                <button 
+                                  class="buy-btn btn btn-success float-end" 
+                                  data-name="3-colored Necklace Beads" 
+                                  data-price="₱80" 
+                                  data-img="neck1.png" data-bs-toggle="modal" data-bs-target="#buyModal">
+                                  Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="col-md-4">
+                        <div class="card h-100" style="border-color: #ce5641; background-color: rgb(255, 236, 207); width: 19rem;">
+                            <img src="ear1.png" alt="3-colored Earrings Beads" height="250" style="padding: 1rem;">
+                            <div class="card-body">
+                                <p class="text-start">
+                                    3-colored Earrings Beads <br><b>Price:</b> ₱90
+                                </p>
+                                <button 
+                                  class="buy-btn btn btn-success float-end" 
+                                  data-name="3-colored Earrings Beads" 
+                                  data-price="₱90" 
+                                  data-img="ear1.png" data-bs-toggle="modal" data-bs-target="#buyModal">
+                                  Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-              <img src="2.png" alt="">
-              <p style="color: rgb(0, 0, 0);">More than 100 Stores and Service Centers in Visayas, Mindanao and Palawan</p>
-            </div>
-            <div class="col">
-              <img src="3.png" alt="">
-              <p style="color: rgb(0, 0, 0);">Customer Service <br> customer.service@gmail.com </p>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
-      
+
+    <!-- Modal -->
+    <div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header" style="margin-bottom: 2rem;">
+                    <h5 class="modal-title" id="buyModalLabel">Order Summary</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container text-center">
+                        <div class="row align-items-start">
+                            <div class="col">
+                                <img id="modalImg" src="" alt="Product" 
+                                     style="width: 200px; margin-bottom: 1rem; border: 1px solid #ce5641; border-radius: 8px;">
+                            </div>
+                            <div class="col">
+                                <h5 id="modalName"></h5>
+                                <p id="modalPrice" style="font-weight: bold;"></p>
+                                <p>-----------------------------</p>
+                                <a href="payment.html" class="btn btn-primary" style="margin-top: 1.6rem;">
+                                  Proceed to Payment
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 2rem;">
+        <p style="width: 50rem; text-align: center;">
+            Stay ahead of the fashion curve with our collection of trending local accessories—each piece thoughtfully crafted to reflect modern style, cultural flair, and everyday versatility. From statement jewelry to handmade details, these accessories are designed to elevate any look with a touch of local charm.
+        </p>
+    </div>
+
+
+    <div class="img" style="height: 60vh; width: 100%; background-image: url(8.png); background-repeat: no-repeat; background-size: cover; margin-top: 15rem; background-position: center center; position: relative; display: flex; justify-content: center; align-items: center;">
+      <!-- Dark Overlay -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6);"></div>
+      <p style="position: relative; color: rgb(219, 219, 219); font-size: 2rem; text-align: center; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); padding: 4rem; margin: 0; max-width: 80%;">
+          "Discover the beauty of locally handcrafted accessories, where every piece tells a story and adds a touch of charm to your style."
+      </p>
+  </div>
   
-    <section class="fade-in" style="height: 80vh;">
-      <div class="Services" style="  margin-top: 2rem;">
-        <h1 style="padding: 3rem 3rem;">Services</h1>
-        <p style="padding: 2rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum voluptates perspiciatis eos asperiores illum repudiandae fugiat. Molestias dolorem asperiores nisi quasi culpa quisquam. Enim nemo iste harum alias architecto ea.</p>
-        <p style="padding: 2rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum voluptates perspiciatis eos asperiores illum repudiandae fugiat. Molestias dolorem asperiores nisi quasi culpa quisquam. Enim nemo iste harum alias architecto ea.</p>
-        <p style="padding: 2rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum voluptates perspiciatis eos asperiores illum repudiandae fugiat. Molestias dolorem asperiores nisi quasi culpa quisquam. Enim nemo iste harum alias architecto ea.</p>
-      </div>
+  
+
+    <section  class="fade-in" style="height: 80vh; margin-top: 6rem;">
+        <div id="services" class="Services" style="margin-top: 2rem; text-align: center;">
+            <h1 style="padding: 3rem 3rem;">Services</h1>
+
+            <div class="service-columns" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 0 3rem;">
+                <!-- First Column -->
+                <div>
+                    <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
+                        <img src="4.png" alt="Made-to-Order" style="height: 60px; margin-bottom: 10px;">
+                        <strong>1. Made-to-Order Creations</strong><br>
+                        Choose from a range of designs and materials to have accessories handcrafted just for you. Our artisans will create one-of-a-kind pieces that reflect your personal style and story.
+                    </p>
+
+                    <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
+                        <img src="5.png" alt="Local Artisan" style="height: 60px; margin-bottom: 10px;">
+                        <strong>2. Local Artisan Collaborations</strong><br>
+                        We partner with talented local makers to create limited-edition collections that celebrate cultural craftsmanship and support community livelihoods.
+                    </p>
+                </div>
+
+                <!-- Second Column -->
+                <div>
+                    <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
+                        <img src="6.png" alt="Gift Packaging" style="height: 60px; margin-bottom: 10px;">
+                        <strong>3. Gift Packaging & Personalization</strong><br>
+                        Add a special touch with our eco-friendly gift wrapping and custom message options—perfect for birthdays, celebrations, or thoughtful surprises.
+                    </p>
+
+                    <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
+                        <img src="7.png" alt="Sustainable Crafting" style="height: 60px; margin-bottom: 10px;">
+                        <strong>4. Sustainable Crafting Practices</strong><br>
+                        We are committed to eco-friendly production methods, using sustainable materials and ethical practices to create accessories that are kind to both the earth and the artisans who make them.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    
-    <footer class="fade-in" style="background-color: #582a22; color: white; padding: 3rem 2rem;">
-      <div class="flex-container" style="display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
-          <div class="col" style="flex: 1; min-width: 250px;">
-              <h3>Contact Us</h3>
-              <p>Email: support@localaccessories.com</p>
-              <p>Phone: +63 912 345 6789</p>
-              <p>Address: 123 Craft Lane, Manila, Philippines</p>
-          </div>
-          <div class="col" style="flex: 1; min-width: 250px;">
-              <h3>Quick Links</h3>
-              <ul style="list-style: none; padding: 0;">
-                  <li><a href="#" style="color: white; text-decoration: none;">Home</a></li>
-                  <li><a href="#" style="color: white; text-decoration: none;">Products</a></li>
-                  <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
-                  <li><a href="#" style="color: white; text-decoration: none;">Contact</a></li>
-              </ul>
-          </div>
-      </div>
-  
-      <div class="text-center" style="margin-top: 2rem;">
-          &copy; 2025 Local Accessories. All rights reserved.
-      </div>
-  </footer>
-  
+
+    <footer class="fade-in" style="background-color: #582a22; color: white; padding: 3rem 2rem; margin-top: 20rem;">
+        <div class="flex-container" style="display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+            <div class="col" style="flex: 1; min-width: 250px;">
+                <h3>Contact Us</h3>
+                <p>Email: support@localaccessories.com</p>
+                <p>Phone: +63 912 345 6789</p>
+                <p>Address: 123 Sankanan, Manolo Fortich, Bukidnon, Philippines</p>
+            </div>
+            <div class="col" style="flex: 1; min-width: 250px;">
+                <h3>Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="#" style="color: white; text-decoration: none;">Home</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Products</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Services</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
- 
-<script src="effect.js"></script>
+
+<script src="effect.js">
+   
+</script>
 </html>
