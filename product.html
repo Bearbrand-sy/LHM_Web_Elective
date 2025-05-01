@@ -65,75 +65,125 @@
   background-color: rgb(46, 77, 43);
   transform: scale(1.05);
 } 
+@media (max-width: 576px) {
+  .search {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
     </style>
 </head>
 
-<div class="d-flex align-items-center" style="margin-top: 1.5rem;">
-    <img src="logo.png" alt="Logo" style="height: 80px; margin-right: 25rem; margin-left: 2rem;">
-  
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="product.html">Products</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.html#services">Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="About.html">About Us</a>
-      </li>
-    </ul>
+
+<nav class="navbar navbar-expand-lg" style="background-color: rgb(241, 241, 217);">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="Logo" style="height: 80px;">
+    </a>
+
+    <!-- Hamburger toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible nav links -->
+    <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="product.html">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="About.html">About Us</a>
+        </li>
+      </ul>
+    </div>
   </div>
+</nav>
+
 
 
 
 
 <body>
-  <div class="search" >
-    <input type="text" class="search__input" placeholder="Search item">
-    <button class="search__button">
-      <img src="search.png" alt="Search Icon" class="search__icon">
+  <div class="container mb-4">
+    <div class="search mx-auto" style="max-width: 100%;">
+      <input type="text" class="search__input w-100" placeholder="Search item">
+      <button class="search__button">
+        <img src="search.png" alt="Search Icon" class="search__icon">
+      </button>
+    </div>
+  </div>
+  
+
+  <div style="position: fixed; top: 20px; right: 30px; z-index: 1000;">
+    <button type="button" class="btn btn-outline-dark position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+      🛒
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
+        0
+      </span>
     </button>
   </div>
-
+  
+  <!-- Cart Items Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="cartItemsContainer"></div>
+        <p id="totalPrice"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <a href="payment.html"><button type="button" class="btn btn-primary">Checkout</button></a> 
+      </div>
+    </div>
+  </div>
+</div>
+  
 
   <h1 class="text-center" style="margin-top: 3rem;">Products</h1>
 
 
-  <div class="container text-center" style="margin-top: 5rem; height: auto;">
-    <div class="row align-items-start">
-      <div class="col-2 dropdown">
-        <button 
-          class="btn btn-light dropdown-toggle d-flex align-items-center" 
-          type="button" 
-          id="sortByDropdown" 
-          data-bs-toggle="dropdown" 
-          aria-expanded="false"
-          style="border: 1px solid  #ce5641; border-radius: 5px; width: 70%;"
-        >
-          Sort by
-          <img src="hambar.png" alt="Sort Icon" style="width: 16px; height: 16px; margin-left: 8px;">
-        </button>
-      
-        <ul class="dropdown-menu" aria-labelledby="sortByDropdown">
-          <li><a class="dropdown-item" href="#" onclick="filterCards('bracelet')">Bracelets</a></li>
-          <li><a class="dropdown-item" href="#" onclick="filterCards('necklace')">Necklaces</a></li>
-          <li><a class="dropdown-item" href="#" onclick="filterCards('earring')">Earrings</a></li>
-          <li><a class="dropdown-item" href="#" onclick="filterCards('all')">All</a></li>
-        </ul>
+  <div class="container mt-5">
+    <div class="row g-4">
+      <div class="col-12 col-md-3">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle w-100" type="button" id="sortByDropdown" data-bs-toggle="dropdown">
+            Sort by
+            <img src="hambar.png" alt="Sort Icon" style="width: 16px; height: 16px; margin-left: 8px;">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="sortByDropdown">
+            <li><a class="dropdown-item" href="#" onclick="filterCards('bracelet')">Bracelets</a></li>
+            <li><a class="dropdown-item" href="#" onclick="filterCards('necklace')">Necklaces</a></li>
+            <li><a class="dropdown-item" href="#" onclick="filterCards('earring')">Earrings</a></li>
+            <li><a class="dropdown-item" href="#" onclick="filterCards('all')">All</a></li>
+          </ul>
+        </div>
       </div>
-      
-      <div class="col-10">
-        <div class="container text-center">
-          <div class="row" id="cardContainer">
-          
+  
+      <div class="col-12 col-md-9">
+        <div class="row" id="cardContainer">
+          <!-- Add cards here using:
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100"> ... </div>
           </div>
+          -->
         </div>
       </div>
     </div>
   </div>
+  
 
 
   <p class="text-center" style="margin: 7rem 4rem 0rem 4rem;">
@@ -170,30 +220,21 @@
 
 
 <!-- Product Modal -->
-<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg"> <!-- Use modal-lg for more horizontal space -->
+<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="buyNowModalLabel">Product Details</h5>
+        <h5 class="modal-title" id="modalName"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <div class="col-md-5">
-            <img id="modalImage" src="" class="img-fluid" alt="Product Image">
-          </div>
-          <div class="col-md-7">
-            <h5 id="modalName"></h5>
-            <p id="modalDescription"></p>
-            <p><strong>Price:</strong> <span id="modalPrice"></span></p>
-          </div>
-        </div>
+        <img id="modalImage" src="" alt="" style="width: 100px; height: 100px;">
+        <p id="modalDescription"></p>
+        <p id="modalPrice"></p>
       </div>
       <div class="modal-footer">
-        <a href="payment.html" class="btn btn-primary">
-          Proceed to Payment
-        </a>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="payment.html"><button type="button" class="btn btn-primary">Checkout</button></a> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

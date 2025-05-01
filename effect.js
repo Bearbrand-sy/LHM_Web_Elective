@@ -66,6 +66,12 @@ function renderCards(data) {
             <h5 class="card-title">${item.name}</h5>
             <p class="card-text">${item.description}</p>
             <p><strong>Price:</strong> ${item.price}</p>
+            <button class="btn btn-success add-to-cart-btn" 
+                    data-name="${item.name}" 
+                    data-price="${item.price}" 
+                    data-img="${item.image}">
+              Add to Cart
+            </button>
             <a href="#" class="btn float-end buy-now-btn" 
                style="background-color:rgb(89, 136, 86); color:rgb(255, 255, 255)" 
                data-index="${index}">
@@ -88,6 +94,7 @@ function renderCards(data) {
     });
   });
 }
+
 // Initial render
 renderCards(products);
 
@@ -123,3 +130,202 @@ function showModal(product) {
   const modal = new bootstrap.Modal(document.getElementById('buyNowModal'));
   modal.show();
 }
+
+let cart = [];
+
+// Function to update cart count
+function updateCartCount() {
+  document.getElementById('cartCount').innerText = cart.length;
+}
+
+// Function to save the cart to localStorage
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Function to load the cart from localStorage
+function loadCart() {
+  const stored = localStorage.getItem('cart');
+  if (stored) {
+    cart = JSON.parse(stored);
+    updateCartCount();
+    renderCartModal(); // Re-render the cart modal with the saved items
+  }
+}
+
+// Load the cart when the page is loaded
+document.addEventListener('DOMContentLoaded', loadCart);
+
+// Event listener for dynamically added "Add to Cart" buttons
+document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('add-to-cart-btn')) {
+    const name = e.target.getAttribute('data-name');
+    const price = e.target.getAttribute('data-price');
+    const img = e.target.getAttribute('data-img');
+
+    // Check if the item already exists in the cart
+    const existingProductIndex = cart.findIndex(item => item.name === name);
+
+    if (existingProductIndex !== -1) {
+      // If it exists, increase the quantity
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      // If it's a new item, add it to the cart
+      cart.push({ name, price, image: img, quantity: 1 });
+    }
+
+    // Update cart count, save cart data, and render cart modal
+    updateCartCount();
+    saveCart();
+
+    // Optionally: You can show a confirmation toast or message here that the item was added
+    alert(`${name} added to cart!`);
+
+    // Show the cart modal after adding the item to the cart
+    renderCartModal();
+  }
+});
+
+// Function to show the modal when the "Buy Now" button or icon is clicked
+document.addEventListener('click', function (e) {
+  // Only trigger the modal for the "Buy Now" button or icon
+  if (e.target.classList.contains('buy-now-btn') || e.target.closest('.buy-now-btn')) {
+    e.preventDefault(); // Prevent default anchor link behavior
+    const index = e.target.getAttribute('data-index') || e.target.closest('.buy-now-btn').getAttribute('data-index');
+    const product = products[index];
+
+    // Show the product details modal first, then proceed to checkout
+    showModal(product, () => addItemToCartAndGoToCheckout(product));
+  }
+});
+
+// Function to show the modal with product details
+function showModal(product, callback) {
+  // Populate the modal with product details
+  document.getElementById('modalName').textContent = product.name;
+  document.getElementById('modalDescription').textContent = product.description;
+  document.getElementById('modalPrice').textContent = product.price;
+  document.getElementById('modalImage').src = product.image;
+  document.getElementById('modalImage').alt = product.name;
+
+  // Show the modal using Bootstrap
+  const modal = new bootstrap.Modal(document.getElementById('buyNowModal'));
+  modal.show();
+
+  // Close the modal and proceed after a delay (or use a button click to close manually)
+  setTimeout(() => {
+    modal.hide();
+    if (callback) callback(); // Call the callback to add to cart and proceed to checkout
+  }, 3000); // Auto-close the modal after 3 seconds (you can change this duration)
+}
+
+// Function to add the item to the cart and redirect to the payment page
+function addItemToCartAndGoToCheckout(product) {
+  // Check if the product already exists in the cart
+  const existingProductIndex = cart.findIndex(item => item.name === product.name);
+
+  if (existingProductIndex !== -1) {
+    // If it exists, increase the quantity
+    cart[existingProductIndex].quantity += 1;
+  } else {
+    // If it's a new item, add it to the cart
+    cart.push({ name: product.name, price: product.price, image: product.image, quantity: 1 });
+  }
+
+  // Save cart and update the count
+  saveCart();
+  updateCartCount();
+
+  // Optionally: You can show a confirmation toast or message here that the item was added
+  alert(`${product.name} added to cart!`);
+
+  // Redirect to payment page after adding the item
+  window.location.href = "payment.html"; // Redirect to payment page
+}
+
+// Function to render the cart modal
+function renderCartModal() {
+  const container = document.getElementById('cartItemsContainer');
+  const totalPriceContainer = document.getElementById('totalPrice');
+
+  let total = 0;
+  let output = '';
+
+  if (cart.length === 0) {
+    output = '<p class="text-muted">Your cart is empty.</p>';
+    totalPriceContainer.innerHTML = 'Total: ₱0.00';
+  } else {
+    cart.forEach((item, index) => {
+      const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+      total += price * item.quantity;
+
+      output += `
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <img src="${item.image}" alt="${item.name}"
+                 style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+            <div>
+              <div>${item.name}</div>
+              <small>${item.price} × ${item.quantity}</small>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-danger remove-item-btn"
+                  data-index="${index}">×</button>
+        </li>
+      `;
+    });
+
+    totalPriceContainer.innerHTML = `Total: ₱${total.toFixed(2)}`;
+  }
+
+  container.innerHTML = `<ul class="list-group">${output}</ul>`;
+}
+
+// Remove item when its "×" is clicked
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('remove-item-btn')) {
+    const idx = parseInt(e.target.getAttribute('data-index'), 10);
+
+    // Remove from cart array
+    cart.splice(idx, 1);
+
+    // Persist & re-render everything
+    saveCart();
+    updateCartCount();
+    renderCartModal();
+  }
+});
+
+
+// Function to update cart count and save to localStorage
+function updateCartCount() {
+  document.getElementById('cartCount').innerText = cart.length;
+}
+
+// Function to save cart to localStorage
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Function to calculate total price
+function calculateTotal() {
+  let total = 0;
+  cart.forEach(item => {
+    const price = parseFloat(item.price.replace(/[^0-9.-]+/g, "")); // Remove any non-numeric characters
+    total += price * item.quantity;
+  });
+  return total.toFixed(2); // Return total rounded to 2 decimal places
+}
+
+// Event listener for "Buy Now" button
+document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('buy-now-btn')) {
+    // Save the cart and total to localStorage
+    const totalAmount = calculateTotal();
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('totalAmount', totalAmount);
+
+    // Redirect to the payment page
+    window.location.href = 'payment.html';
+  }
+});
