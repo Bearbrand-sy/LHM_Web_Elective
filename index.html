@@ -168,6 +168,22 @@
       html {
     scroll-behavior: smooth;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional media query if you want to make cards even smaller on very small screens */
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 1.8rem !important;
+  }
+
+  .card-text {
+    font-size: 0.9rem !important;
+  }
+}
     </style>
 
 </head>
@@ -205,11 +221,13 @@
         </div>
     </div>
 
-    <section class="fade-in" style="min-height: 100vh; margin-top: 10rem;">
+    <p style="margin-left: 5rem; margin-top: 8rem;">_____________________________________________________________________________________________________________________</p>
+
+    <section class="fade-in" style="min-height: 100vh; margin-top: 3rem;">
         <div class="products" style="padding: 5rem;">
             <h2 class=" mb-5">Hot Trend Local Accessories</h2>
 
-            <div class="container" style="margin-left: 5rem;">
+            <div class="container" style="margin-left: 2rem;">
                 <div class="row justify-content-center g-4">
                     <!-- Product 1 -->
                     <div class="col-md-4">
@@ -310,15 +328,63 @@
         </p>
     </div>
 
+        <p style="margin-left: 5rem; margin-top: 8rem;">_____________________________________________________________________________________________________________________</p>
 
-    <div class="img" style="height: 60vh; width: 100%; background-image: url(8.png); background-repeat: no-repeat; background-size: cover; margin-top: 15rem; background-position: center center; position: relative; display: flex; justify-content: center; align-items: center;">
-      <!-- Dark Overlay -->
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6);"></div>
-      <p style="position: relative; color: rgb(219, 219, 219); font-size: 2rem; text-align: center; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); padding: 4rem; margin: 0; max-width: 80%;">
-          "Discover the beauty of locally handcrafted accessories, where every piece tells a story and adds a touch of charm to your style."
-      </p>
-  </div>
-  
+
+
+ <!-- Hero Section with Cards -->
+<div class="img d-flex flex-column justify-content-center align-items-center text-center text-light"
+style="height: auto; width: 100%; background-image: url('8.png'); background-repeat: no-repeat; background-size: cover; background-position: center; margin-top: 10rem; position: relative; animation: fadeIn 2s ease-in; padding: 4rem 0;">
+
+<!-- Overlay -->
+<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1;"></div>
+
+<!-- Text Content -->
+<p style="position: relative; z-index: 2; max-width: 80%; font-size: 2rem; font-family: Georgia, 'Times New Roman', Times, serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); margin-top: 2rem;">
+"Discover the beauty of locally handcrafted accessories, where every piece tells a story and adds a touch of charm to your style."
+</p>
+
+<!-- Card Section -->
+<div class="container my-5" style="position: relative; z-index: 2;">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
+ <div class="col">
+   <div class="carde h-100">
+     <div class="card-body text-white text-center" style="background-color: #582a22; padding: 1rem; border-radius: 20px;">
+       <h5 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">139+</h5>
+       <p class="card-text" style="font-size: 1rem;">Client Served</p>
+     </div>
+   </div>
+ </div>
+ <div class="col">
+   <div class="carde h-100">
+     <div class="card-body text-white text-center" style="background-color: #582a22; padding: 1rem; border-radius: 20px;">
+       <h5 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">97%</h5>
+       <p class="card-text" style="font-size: 1rem;">Client Satisfaction</p>
+     </div>
+   </div>
+ </div>
+ <div class="col">
+   <div class="carde h-100">
+     <div class="card-body text-white text-center" style="background-color: #582a22; padding: 1rem; border-radius: 20px;">
+       <h5 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">5+</h5>
+       <p class="card-text" style="font-size: 1rem;">Official Store Nationwide</p>
+     </div>
+   </div>
+ </div>
+ <div class="col">
+   <div class="carde h-100">
+     <div class="card-body text-white text-center" style="background-color: #582a22; padding: 1rem; border-radius: 20px;">
+       <h5 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">10+</h5>
+       <p class="card-text" style="font-size: 1rem;">Advertisement Launched</p>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
+    
+   
   
 
     <section  class="fade-in" style="height: 80vh; margin-top: 6rem;">
@@ -359,7 +425,7 @@
         </div>
     </section>
 
-    <footer class="fade-in" style="background-color: #582a22; color: white; padding: 3rem 2rem; margin-top: 20rem;">
+    <footer class="fade-in" style="background-color: #582a22; color: white; padding: 3rem 4rem; margin-top: 20rem;">
         <div class="flex-container" style="display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
             <div class="col" style="flex: 1; min-width: 250px;">
                 <h3>Contact Us</h3>
@@ -376,7 +442,10 @@
                     <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
                 </ul>
             </div>
+
+            
         </div>
+        <p class="text-center" style="margin-top: 2rem; color: rgb(204, 204, 204);">@2025 LHM Jewelry. All Rights Reserved.</p>
     </footer>
 </body>
 
