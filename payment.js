@@ -102,15 +102,18 @@ function showConfirmationModal() {
 
 function onModalConfirm() {
   alert('Your payment has been confirmed. Thank you for your purchase!');
-  localStorage.removeItem('cart');
-  document.getElementById('paymentForm').reset();
+  
+  localStorage.removeItem('cart');                  // Clear cart from storage
+  renderCart('cartItems', 'totalPrice');            // Re-render cart UI
+  
+  document.getElementById('paymentForm').reset();   // Reset form
 
+  // Hide all input containers
   ['cardInputContainer', 'gcashInputContainer', 'codInputContainer', 'addressContainer', 'postalCodeContainer'].forEach(id =>
     document.getElementById(id)?.classList.add('d-none')
   );
 
   confirmationModal.hide();
-  // location.reload(); // Optional
 }
 
 triggerBtn?.addEventListener('click', function (event) {
@@ -122,7 +125,7 @@ const backConfirmModalEl = document.getElementById('backConfirmModal');
 const confirmBackBtn = document.getElementById('confirmBackBtn');
 const backConfirmModal = new bootstrap.Modal(backConfirmModalEl);
 
-function attemptBackNavigation(event, redirectUrl = 'index.html') {
+function attemptBackNavigation(event, redirectUrl = 'product.html') {
   event.preventDefault();
   backConfirmModal.show();
 
