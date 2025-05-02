@@ -32,18 +32,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const products = [
-  { "name": "Bracelet 1", "type": "bracelet", "image": "bracelet1.png", "description": "Some quick example text for bracelet 1.", "price": "₱50" },
-  { "name": "Necklace 1", "type": "necklace", "image": "necklace1.png", "description": "Some quick example text for necklace 1.", "price": "₱100" },
-  { "name": "Earring 1", "type": "earring", "image": "earring1.png", "description": "Some quick example text for earring 1.", "price": "₱30" },
-  { "name": "Bracelet 2", "type": "bracelet", "image": "bracelet2.png", "description": "Some quick example text for bracelet 2.", "price": "₱60" },
+  { "name": "3-colored Beads Bracelet", "type": "bracelet", "image": "brace1.png", "price": "₱50" },
+  { "name": "Necklace 1", "type": "necklace", "image": "neck1.png", "description": "Some quick example text for necklace 1.", "price": "₱100" },
+  { "name": "Earring 1", "type": "earring", "image": "ear1.png", "description": "Some quick example text for earring 1.", "price": "₱30" },
+  { "name": "Black Bracelet", "type": "bracelet", "image": "brace2.png", "price": "₱60" },
   { "name": "Necklace 2", "type": "necklace", "image": "necklace2.png", "description": "Some quick example text for necklace 2.", "price": "₱120" },
   { "name": "Earring 2", "type": "earring", "image": "earring2.png", "description": "Some quick example text for earring 2.", "price": "₱40" },
   { "name": "Earring 3", "type": "earring", "image": "earring3.png", "description": "Some quick example text for earring 3.", "price": "₱50" },
   { "name": "Earring 4", "type": "earring", "image": "earring4.png", "description": "Some quick example text for earring 4.", "price": "₱80" },
-  { "name": "Bracelet 3", "type": "bracelet", "image": "bracelet3.png", "description": "Some quick example text for bracelet 3.", "price": "₱100" },
+  { "name": "Flower Bead Bracelet ", "type": "bracelet", "image": "brace3.png",  "price": "₱100" },
   { "name": "Necklace 3", "type": "necklace", "image": "necklace3.png", "description": "Some quick example text for necklace 3.", "price": "₱120" },
   { "name": "Necklace 4", "type": "necklace", "image": "necklace4.png", "description": "Some quick example text for necklace 4.", "price": "₱140" },
-  { "name": "Bracelet 4", "type": "bracelet", "image": "bracelet4.png", "description": "Some quick example text for bracelet 4.", "price": "₱90" }
+  { "name": "Heart Black Bracelet", "type": "bracelet", "image": "brace4.png", "description": "Some quick example text for bracelet 4.", "price": "₱90" }
 ];
 
 const cardContainer = document.getElementById('cardContainer');
@@ -59,8 +59,8 @@ function renderCards(data) {
   }
   data.forEach((item, index) => {
     cardContainer.innerHTML += `
-      <div class="col-md-3 mb-3 card-item" data-type="${item.type}">
-        <div class="card h-100" style="border: 1px solid #ce5641; border-radius: 5px; background-color:rgb(255, 255, 255);">
+      <div class="col-md-6 mb-6 card-item" data-type="${item.type}">
+        <div class="card h-50" style="border: 1px solid #ce5641; border-radius: 5px; background-color:rgb(255, 255, 255);">
           <img src="${item.image}" class="card-img-top" alt="${item.name}">
           <div class="card-body">
             <h5 class="card-title">${item.name}</h5>
@@ -131,201 +131,166 @@ function showModal(product) {
   modal.show();
 }
 
+
+// Cart
 let cart = [];
 
-// Function to update cart count
-function updateCartCount() {
-  document.getElementById('cartCount').innerText = cart.length;
+function renderCards(data) {
+  const cardContainer = document.getElementById('cardContainer');
+  cardContainer.innerHTML = data.length ? '' : '<p>No items found.</p>';
+
+  data.forEach((item, index) => {
+    cardContainer.innerHTML += `
+      <div class="col-md-4 mb-3 card-item" data-type="${item.type}">
+        <div class="card h-100" style="border: 1px solid #ce5641; border-radius: 5px; background-color: rgb(238, 238, 224);">
+          <img src="${item.image}" class="card-img-top" alt="${item.name}" style="height: 10rem; object-fit: contain;">
+          <div class="card-body">
+            <h5 class="card-title" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;">${item.name}</h5>
+            <p  style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;"><strong>Price:</strong> ${item.price}</p>
+            <button class="btn add-to-cart-btn" data-name="${item.name}" data-price="${item.price}" data-img="${item.image}" 
+                    style="background-color:rgb(238, 156, 131); color: white; border: none; padding: 10px 20px; font-size: 12px; 
+                    border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.3s;">
+              Add to Cart
+            </button>
+            <a href="#" class="btn float-end buy-now-btn" style="background-color:rgb(51, 161, 43); color:rgb(255, 255, 255)" data-index="${index}">Buy Now</a>
+          </div>
+        </div>
+      </div>`;
+  });
+
+
+
+  document.querySelectorAll('.buy-now-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const product = data[btn.getAttribute('data-index')];
+      showModal(product, () => addItemToCartAndGoToCheckout(product));
+    });
+  });
 }
 
-// Function to save the cart to localStorage
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Function to load the cart from localStorage
-function loadCart() {
-  const stored = localStorage.getItem('cart');
-  if (stored) {
-    cart = JSON.parse(stored);
-    updateCartCount();
-    renderCartModal(); // Re-render the cart modal with the saved items
-  }
-}
-
-// Load the cart when the page is loaded
-document.addEventListener('DOMContentLoaded', loadCart);
-
-// Event listener for dynamically added "Add to Cart" buttons
-document.addEventListener('click', function (e) {
-  if (e.target.classList.contains('add-to-cart-btn')) {
-    const name = e.target.getAttribute('data-name');
-    const price = e.target.getAttribute('data-price');
-    const img = e.target.getAttribute('data-img');
-
-    // Check if the item already exists in the cart
-    const existingProductIndex = cart.findIndex(item => item.name === name);
-
-    if (existingProductIndex !== -1) {
-      // If it exists, increase the quantity
-      cart[existingProductIndex].quantity += 1;
-    } else {
-      // If it's a new item, add it to the cart
-      cart.push({ name, price, image: img, quantity: 1 });
-    }
-
-    // Update cart count, save cart data, and render cart modal
-    updateCartCount();
-    saveCart();
-
-    // Optionally: You can show a confirmation toast or message here that the item was added
-    alert(`${name} added to cart!`);
-
-    // Show the cart modal after adding the item to the cart
-    renderCartModal();
-  }
-});
-
-// Function to show the modal when the "Buy Now" button or icon is clicked
-document.addEventListener('click', function (e) {
-  // Only trigger the modal for the "Buy Now" button or icon
-  if (e.target.classList.contains('buy-now-btn') || e.target.closest('.buy-now-btn')) {
-    e.preventDefault(); // Prevent default anchor link behavior
-    const index = e.target.getAttribute('data-index') || e.target.closest('.buy-now-btn').getAttribute('data-index');
-    const product = products[index];
-
-    // Show the product details modal first, then proceed to checkout
-    showModal(product, () => addItemToCartAndGoToCheckout(product));
-  }
-});
-
-// Function to show the modal with product details
-function showModal(product, callback) {
-  // Populate the modal with product details
+function showModal(product, callback = null) {
   document.getElementById('modalName').textContent = product.name;
   document.getElementById('modalDescription').textContent = product.description;
   document.getElementById('modalPrice').textContent = product.price;
   document.getElementById('modalImage').src = product.image;
   document.getElementById('modalImage').alt = product.name;
 
-  // Show the modal using Bootstrap
   const modal = new bootstrap.Modal(document.getElementById('buyNowModal'));
   modal.show();
 
-  // Close the modal and proceed after a delay (or use a button click to close manually)
-  setTimeout(() => {
-    modal.hide();
-    if (callback) callback(); // Call the callback to add to cart and proceed to checkout
-  }, 3000); // Auto-close the modal after 3 seconds (you can change this duration)
+  if (callback) {
+    setTimeout(() => {
+      modal.hide();
+      callback();
+    }, 3000);
+  }
 }
 
-// Function to add the item to the cart and redirect to the payment page
 function addItemToCartAndGoToCheckout(product) {
-  // Check if the product already exists in the cart
-  const existingProductIndex = cart.findIndex(item => item.name === product.name);
+  const existing = cart.find(item => item.name === product.name);
+  if (existing) existing.quantity += 1;
+  else cart.push({ name: product.name, price: product.price, image: product.image, quantity: 1 });
 
-  if (existingProductIndex !== -1) {
-    // If it exists, increase the quantity
-    cart[existingProductIndex].quantity += 1;
-  } else {
-    // If it's a new item, add it to the cart
-    cart.push({ name: product.name, price: product.price, image: product.image, quantity: 1 });
-  }
-
-  // Save cart and update the count
   saveCart();
   updateCartCount();
-
-  // Optionally: You can show a confirmation toast or message here that the item was added
   alert(`${product.name} added to cart!`);
-
-  // Redirect to payment page after adding the item
-  window.location.href = "payment.html"; // Redirect to payment page
+  window.location.href = "payment.html";
 }
 
-// Function to render the cart modal
+// Cart utilities
+function updateCartCount() {
+  document.getElementById('cartCount').innerText = cart.length;
+}
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function loadCart() {
+  const stored = localStorage.getItem('cart');
+  if (stored) {
+    cart = JSON.parse(stored);
+    updateCartCount();
+    renderCartModal();
+  }
+}
+
 function renderCartModal() {
   const container = document.getElementById('cartItemsContainer');
   const totalPriceContainer = document.getElementById('totalPrice');
 
-  let total = 0;
-  let output = '';
-
-  if (cart.length === 0) {
-    output = '<p class="text-muted">Your cart is empty.</p>';
+  if (!cart.length) {
+    container.innerHTML = '<p class="text-muted">Your cart is empty.</p>';
     totalPriceContainer.innerHTML = 'Total: ₱0.00';
-  } else {
-    cart.forEach((item, index) => {
-      const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
-      total += price * item.quantity;
-
-      output += `
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center">
-            <img src="${item.image}" alt="${item.name}"
-                 style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
-            <div>
-              <div>${item.name}</div>
-              <small>${item.price} × ${item.quantity}</small>
-            </div>
-          </div>
-          <button class="btn btn-sm btn-outline-danger remove-item-btn"
-                  data-index="${index}">×</button>
-        </li>
-      `;
-    });
-
-    totalPriceContainer.innerHTML = `Total: ₱${total.toFixed(2)}`;
+    return;
   }
 
-  container.innerHTML = `<ul class="list-group">${output}</ul>`;
+  let total = 0;
+  const itemsHTML = cart.map((item, index) => {
+    const price = parseFloat(item.price.replace(/[^\d.-]+/g, ""));
+    total += price * item.quantity;
+    return `
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+          <div>
+            <div>${item.name}</div>
+            <small>${item.price} × ${item.quantity}</small>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline-danger remove-item-btn" data-index="${index}">×</button>
+      </li>`;
+  }).join("");
+
+  container.innerHTML = `<ul class="list-group">${itemsHTML}</ul>`;
+  totalPriceContainer.innerHTML = `Total: ₱${total.toFixed(2)}`;
 }
 
-// Remove item when its "×" is clicked
-document.addEventListener('click', function(e) {
+// Event delegation for cart actions
+document.addEventListener('click', function (e) {
+  // Add to cart
+  if (e.target.classList.contains('add-to-cart-btn')) {
+    const name = e.target.getAttribute('data-name');
+    const price = e.target.getAttribute('data-price');
+    const img = e.target.getAttribute('data-img');
+
+    const existing = cart.find(item => item.name === name);
+    if (existing) existing.quantity += 1;
+    else cart.push({ name, price, image: img, quantity: 1 });
+
+    saveCart();
+    updateCartCount();
+    alert(`${name} added to cart!`);
+    renderCartModal();
+  }
+
+  // Remove from cart
   if (e.target.classList.contains('remove-item-btn')) {
     const idx = parseInt(e.target.getAttribute('data-index'), 10);
-
-    // Remove from cart array
     cart.splice(idx, 1);
-
-    // Persist & re-render everything
     saveCart();
     updateCartCount();
     renderCartModal();
   }
 });
 
+// Proceed to Payment
+document.getElementById('proceedToPaymentBtn')?.addEventListener('click', () => {
+  const selectedProduct = {
+    name: document.getElementById('modalName').textContent,
+    price: document.getElementById('modalPrice').textContent,
+    image: document.getElementById('modalImage').src
+  };
+  localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+});
 
-// Function to update cart count and save to localStorage
-function updateCartCount() {
-  document.getElementById('cartCount').innerText = cart.length;
-}
+document.getElementById('checkoutButton')?.addEventListener('click', function () {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Function to save cart to localStorage
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Function to calculate total price
-function calculateTotal() {
-  let total = 0;
-  cart.forEach(item => {
-    const price = parseFloat(item.price.replace(/[^0-9.-]+/g, "")); // Remove any non-numeric characters
-    total += price * item.quantity;
-  });
-  return total.toFixed(2); // Return total rounded to 2 decimal places
-}
-
-// Event listener for "Buy Now" button
-document.addEventListener('click', function (e) {
-  if (e.target.classList.contains('buy-now-btn')) {
-    // Save the cart and total to localStorage
-    const totalAmount = calculateTotal();
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('totalAmount', totalAmount);
-
-    // Redirect to the payment page
+  if (cart.length === 0) {
+    alert('Your cart is empty. Please add items before checking out.');
+  } else {
     window.location.href = 'payment.html';
   }
 });

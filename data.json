@@ -1,9 +1,8 @@
 [
     {
-      "name": "Bracelet 1",
+      "name": "3-colored Beads Bracelet ",
       "type": "bracelet",
       "image": "bracelet1.png",
-      "description": "Some quick example text for bracelet 1.",
       "price": "₱50"
     },
     {

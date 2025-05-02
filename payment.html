@@ -9,6 +9,7 @@
     <style>
         body {
             background-color: rgb(241, 241, 217);
+           
         }
         .nav-link {
             color: black;
@@ -42,6 +43,7 @@
         }
         .payment-form button:hover {
             background-color: #b84a36;
+            
         }
     </style>
 </head>
@@ -89,6 +91,8 @@
             <h3 class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif;">Item List</h3>
             <div class="items-list" id="cartItems"></div>
             <div class="total-price" id="totalPrice"></div>
+
+            <button id="backToProductsBtn" class="btn btn-outline-danger">Back to Products</button>
         </div>
 
         <!-- Right: Payment Form -->
@@ -149,23 +153,46 @@
 
 <!-- Modal Structure -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmationModalLabel">Confirm Payment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p id="confirmationMessage"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" id="confirmPaymentButtonInModal" class="btn btn-primary">Confirm Payment</button>
-            </div>
+    <div class="modal-dialog modal-dialog-centered"> <!-- Centered Modal -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalLabel">Confirm Payment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <p id="confirmationMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="confirmPaymentButtonInModal" class="btn btn-primary">Confirm Payment</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
   
+  
+<!-- Back Navigation Confirmation Modal -->
+<div class="modal fade" id="backConfirmModal" tabindex="-1" aria-labelledby="backConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="backConfirmModalLabel">Leave Page?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          If you go back, your cart will be cleared. Do you want to continue?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="confirmBackBtn" class="btn btn-danger">Yes, Go Back</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
 </body>
 
 <script src="payment.js"></script>
