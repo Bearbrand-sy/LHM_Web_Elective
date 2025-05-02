@@ -185,6 +185,51 @@
     font-size: 0.9rem !important;
   }
 }
+
+        /* Modal background color */
+.modal-content {
+  background-color: #f8f9fa;  /* Light background */
+  color: #333;  /* Dark text color */
+}
+
+/* Modal Header */
+.modal-header {
+  background-color: #ce5641; /* Dark background */
+  color: white;  /* White text */
+}
+
+/* Modal Title */
+.modal-title {
+  font-weight: bold;
+}
+
+/* Button style */
+.btn {
+  
+  border-color: #fa5353;  /* Border matches button */
+}
+
+/* Button hover effect */
+.btn:hover {
+  background-color:  #fa5353;  /* Darker shade on hover */
+  border-color: #c22b2b;
+  color: white;
+}
+
+/* Input fields */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Link styling */
+a {
+  color: #fa5353;  /* Matching link color */
+}
+
+a:hover {
+  text-decoration: underline;
+}
     </style>
 
 </head>
@@ -201,7 +246,7 @@
       </button>
   
       <!-- Collapsible nav links -->
-      <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+      <div class="collapse navbar-collapse justify-content-center" id="mainNavbar" style="margin-left: 2.5rem;">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
@@ -217,8 +262,13 @@
           </li>
         </ul>
       </div>
+
     </div>
+    <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+        <img src="account.png" alt="Logo" style="height: 30px; margin-bottom: 2rem; margin-right: 1rem;">
+      </a>
   </nav>
+  
 <body>
 
     <div class="container text-center fade-in">
@@ -459,6 +509,76 @@ style="height: auto; width: 100%; background-image: url('8.png'); background-rep
         </div>
         <p class="text-center" style="margin-top: 2rem; color: rgb(204, 204, 204);">@2025 LHM Jewelry. All Rights Reserved.</p>
     </footer>
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Log In to Your Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Login Form -->
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="loginUsernameInput" class="form-label">Username</label>
+              <input type="text" class="form-control" id="loginUsernameInput" placeholder="Enter username" required>
+            </div>
+            <div class="mb-3">
+              <label for="loginPasswordInput" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPasswordInput" placeholder="Enter password" required>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn  w-100">Log In</button>
+            </div>
+            <div class="text-center">
+              <p>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Sign up</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+    <!-- Sign Up Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel">Create an Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Sign Up Form -->
+          <form id="signupForm">
+            <div class="mb-3">
+              <label for="usernameInput" class="form-label">Username</label>
+              <input type="text" class="form-control" id="usernameInput" placeholder="Enter username" required>
+            </div>
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">Email Address (optional)</label>
+              <input type="email" class="form-control" id="emailInput" placeholder="Enter email" required>
+            </div>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Password</label>
+              <input type="password" class="form-control" id="passwordInput" placeholder="Enter password" required>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn  w-100">Sign Up</button>
+            </div>
+            <div class="text-center">
+              <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Log in</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 <script src="effect.js">
