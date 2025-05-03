@@ -21,7 +21,7 @@ include("connect.php");
         }
       
         body {
-          background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+          background: linear-gradient(120deg,rgb(241, 241, 217),rgb(255, 249, 198));
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -38,6 +38,7 @@ include("connect.php");
           width: 100%;
           max-width: 400px;
           margin-bottom: 30px;
+          border: 1px solid rgb(236, 93, 93);
         }
       
         .form-title {

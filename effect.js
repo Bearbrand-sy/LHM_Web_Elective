@@ -32,18 +32,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const products = [
-  { "name": "3-colored Beads Bracelet", "type": "bracelet", "image": "brace1.png", "price": "₱50" },
-  { "name": "Necklace 1", "type": "necklace", "image": "neck1.png", "description": "Some quick example text for necklace 1.", "price": "₱100" },
-  { "name": "Earring 1", "type": "earring", "image": "ear1.png", "description": "Some quick example text for earring 1.", "price": "₱30" },
-  { "name": "Black Bracelet", "type": "bracelet", "image": "brace2.png", "price": "₱60" },
-  { "name": "Necklace 2", "type": "necklace", "image": "necklace2.png", "description": "Some quick example text for necklace 2.", "price": "₱120" },
-  { "name": "Earring 2", "type": "earring", "image": "earring2.png", "description": "Some quick example text for earring 2.", "price": "₱40" },
-  { "name": "Earring 3", "type": "earring", "image": "earring3.png", "description": "Some quick example text for earring 3.", "price": "₱50" },
-  { "name": "Earring 4", "type": "earring", "image": "earring4.png", "description": "Some quick example text for earring 4.", "price": "₱80" },
-  { "name": "Flower Bead Bracelet ", "type": "bracelet", "image": "brace3.png",  "price": "₱100" },
-  { "name": "Necklace 3", "type": "necklace", "image": "necklace3.png", "description": "Some quick example text for necklace 3.", "price": "₱120" },
-  { "name": "Necklace 4", "type": "necklace", "image": "necklace4.png", "description": "Some quick example text for necklace 4.", "price": "₱140" },
-  { "name": "Heart Black Bracelet", "type": "bracelet", "image": "brace4.png", "description": "Some quick example text for bracelet 4.", "price": "₱90" }
+  { "name": "3-colored Beads Bracelet", "type": "bracelet", "image": "./assets/brace1.png", "price": "₱50" },
+  { "name": "Necklace 1", "type": "necklace", "image": "./assets/neck1.png", "description": "Some quick example text for necklace 1.", "price": "₱100" },
+  { "name": "Earring 1", "type": "earring", "image": "./assets/ear1.png", "description": "Some quick example text for earring 1.", "price": "₱30" },
+  { "name": "Black Bracelet", "type": "bracelet", "image": "./assets/brace2.png", "price": "₱60" },
+  { "name": "Necklace 2", "type": "necklace", "image": "./assets/necklace2.png", "description": "Some quick example text for necklace 2.", "price": "₱120" },
+  { "name": "Earring 2", "type": "earring", "image": "./assets/earring2.png", "description": "Some quick example text for earring 2.", "price": "₱40" },
+  { "name": "Earring 3", "type": "earring", "image": "./assets/earring3.png", "description": "Some quick example text for earring 3.", "price": "₱50" },
+  { "name": "Earring 4", "type": "earring", "image": "./assets/earring4.png", "description": "Some quick example text for earring 4.", "price": "₱80" },
+  { "name": "Flower Bead Bracelet ", "type": "bracelet", "image": "./assets/brace3.png",  "price": "₱100" },
+  { "name": "Necklace 3", "type": "necklace", "image": "./assets/necklace3.png", "description": "Some quick example text for necklace 3.", "price": "₱120" },
+  { "name": "Necklace 4", "type": "necklace", "image": "./assets/necklace4.png", "description": "Some quick example text for necklace 4.", "price": "₱140" },
+  { "name": "Heart Black Bracelet", "type": "bracelet", "image": "./assets/brace4.png", "description": "Some quick example text for bracelet 4.", "price": "₱90" }
 ];
 
 const cardContainer = document.getElementById('cardContainer');
@@ -313,14 +313,15 @@ document.addEventListener("click", function(event) {
 });
 
 function toggleDropdown() {
-  const dropdown = document.getElementById('dropdownContent');
-  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  var dropdown = document.getElementById("dropdownContent");
+  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 }
 
-// Hide dropdown if clicked outside
-window.addEventListener('click', function(e) {
-  const dropdown = document.getElementById('dropdownContent');
-  if (!e.target.matches('img')) {
-    dropdown.style.display = 'none';
+// Optional: Close dropdown if clicked outside
+document.addEventListener("click", function(e) {
+  var dropdown = document.getElementById("dropdownContent");
+  var img = document.querySelector(".dropdown-container img");
+  if (!dropdown.contains(e.target) && e.target !== img) {
+    dropdown.style.display = "none";
   }
 });

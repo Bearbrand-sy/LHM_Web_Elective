@@ -275,40 +275,32 @@ a:hover {
     }
 
     .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 10px;
-      background-color: white;
-      min-width: 150px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      padding: 10px;
-      z-index: 1;
-      border-radius: 10px;
-    }
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 10;
+  border-radius: 10px;
+}
 
-    .dropdown-content a {
-      display: block;
-      text-decoration: none;
-      color: black;
-      padding: 10px;
-    }
+.dropdown-content a,
+.dropdown-content form {
+  display: block;
+  text-decoration: none;
+  color: red;
+  padding: 10px;
+}
 
-    .dropdown-content a:hover {
-      background-color: #eee;
-    }
-
-    .logout-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-      width: 100%;
-      text-align: left;
-    }
-
-    .dropdown-container img {
-      cursor: pointer;
-    }
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  color: red;
+}
     </style>
 
 </head>
@@ -316,7 +308,7 @@ a:hover {
     <div class="container-fluid">
       <!-- Logo -->
       <a class="navbar-brand" href="#">
-        <img src="logo.png" alt="Logo" style="height: 80px;">
+        <img src="./assets/logo.png" alt="Logo" style="height: 80px;">
       </a>
   
       <!-- Hamburger toggle button -->
@@ -324,43 +316,41 @@ a:hover {
         <span class="navbar-toggler-icon"></span>
       </button>
   
-      <!-- Collapsible nav links -->
-      <div class="collapse navbar-collapse justify-content-center" id="mainNavbar" style="margin-left: 3.7rem;">
-        <ul class="navbar-nav mb-2 mb-lg-0">
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="mainNavbar" style="margin-left: 15.6rem;">
+        <!-- Centered links -->
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" href="index2.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="product.html">Products</a>
+            <a class="nav-link" href="product2.html">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html#services">Services</a>
+            <a class="nav-link" href="index2.html#services">Services</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="About.html">About Us</a>
           </li>
         </ul>
+  
+        <!-- Account image dropdown -->
+        <?php session_start(); ?>
+        <div class="dropdown-container d-flex align-items-center ms-auto mt-2 mt-lg-0" style="position: relative;">
+          <img src="./assets/account.png" alt="Account" style="height: 30px; cursor: pointer;" onclick="toggleDropdown()">
+          <div class="dropdown-content" id="dropdownContent" style="right: 0;">
+            <?php if (isset($_SESSION['email'])): ?>
+              <span style="padding: 10px; color: #333;"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+              <a href="profile.php">Profile</a>
+              <a href="orders.php">Orders</a>
+              <form method="post" action="logout.php">
+                <button class="logout-btn" type="submit">Logout</button>
+              </form>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
-
     </div>
-    <?php
-session_start();
-?>
-<div class="dropdown-container">
-    <img src="account.png" alt="Logo" style="height:30px; margin-bottom: 2rem; margin-right: 1rem;" onclick="toggleDropdown()">
-    <div class="dropdown-content" id="dropdownContent">
-      <?php if (isset($_SESSION['email'])): ?>
-        <span style="padding: 10px; color: #333;"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
-        <a href="profile.php">Profile</a>
-        <a href="orders.php">Orders</a>
-        <form method="post" action="logout.php">
-          <button class="logout-btn" type="submit">Logout</button>
-        </form>
-      <?php endif; ?>
-    </div>
-  </div>
-
-
   </nav>
   
 <body>
@@ -373,7 +363,7 @@ session_start();
                 <p style="margin-top: 5rem; color: rgb(121, 55, 55);">Discover the beauty of handcrafted expression with our locally made accessories. Each piece is a celebration of culture, creativity, and craftsmanship—designed to help you stand out while supporting our vibrant community of artisans. Whether you're looking for something bold, elegant, or truly one-of-a-kind, you've come to the right place.</p>
             </div>
             <div class="col">
-                <div class="img" style=" background-image: url(i.png); background-size: cover; background-position: center; background-repeat: no-repeat; height: 25rem;width: 25rem;margin-top: 4.5rem;margin-left: 3rem;border-radius: 40%;overflow: hidden;border: 4px solid white;">
+                <div class="img" style=" background-image: url(./assets/i.png); background-size: cover; background-position: center; background-repeat: no-repeat; height: 25rem;width: 25rem;margin-top: 4.5rem;margin-left: 3rem;border-radius: 40%;overflow: hidden;border: 4px solid white;">
                 </div>
             </div>
         </div>
@@ -390,7 +380,7 @@ session_start();
                     <!-- Product 1 -->
                     <div class="col-md-4">
                         <div class="card h-100" style="border-color: #ce5641; background-color: rgb(238, 238, 224); width: 19rem;">
-                            <img src="brace1.png" alt="3-colored Beads Bracelet" height="250" style="padding: 1rem;">
+                            <img src="./assets/brace1.png" alt="3-colored Beads Bracelet" height="250" style="padding: 1rem;">
                             <div class="card-body">
                                 <p class="text-start">
                                     3-colored Beads Bracelet <br><b>Price:</b> ₱60
@@ -403,7 +393,7 @@ session_start();
                     <!-- Product 2 -->
                     <div class="col-md-4">
                         <div class="card h-100" style="border-color: #ce5641; background-color: rgb(238, 238, 224); width: 19rem;">
-                            <img src="neck1.png" alt="3-colored Necklace Beads" height="250" style="padding: 1rem;">
+                            <img src="./assets/neck1.png" alt="3-colored Necklace Beads" height="250" style="padding: 1rem;">
                             <div class="card-body">
                                 <p class="text-start">
                                     3-colored Necklace Beads <br><b>Price:</b> ₱80
@@ -416,7 +406,7 @@ session_start();
                     <!-- Product 3 -->
                     <div class="col-md-4">
                         <div class="card h-100" style="border-color: #ce5641; background-color: rgb(238, 238, 224); width: 19rem;">
-                            <img src="ear1.png" alt="3-colored Earrings Beads" height="250" style="padding: 1rem;">
+                            <img src="./assets/ear1.png" alt="3-colored Earrings Beads" height="250" style="padding: 1rem;">
                             <div class="card-body">
                                 <p class="text-start">
                                     3-colored Earrings Beads <br><b>Price:</b> ₱90
@@ -490,7 +480,7 @@ session_start();
 
  <!-- Hero Section with Cards -->
 <div class="img d-flex flex-column justify-content-center align-items-center text-center text-light"
-style="height: auto; width: 100%; background-image: url('8.png'); background-repeat: no-repeat; background-size: cover; background-position: center; margin-top: 10rem; position: relative; animation: fadeIn 2s ease-in; padding: 4rem 0;">
+style="height: auto; width: 100%; background-image: url('./assets/8.png'); background-repeat: no-repeat; background-size: cover; background-position: center; margin-top: 10rem; position: relative; animation: fadeIn 2s ease-in; padding: 4rem 0;">
 
 <!-- Overlay -->
 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1;"></div>
@@ -551,13 +541,13 @@ style="height: auto; width: 100%; background-image: url('8.png'); background-rep
                 <!-- First Column -->
                 <div>
                     <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
-                        <img src="4.png" alt="Made-to-Order" style="height: 60px; margin-bottom: 10px;">
+                        <img src="./assets/4.png" alt="Made-to-Order" style="height: 60px; margin-bottom: 10px;">
                         <strong>1. Made-to-Order Creations</strong><br>
                         Choose from a range of designs and materials to have accessories handcrafted just for you. Our artisans will create one-of-a-kind pieces that reflect your personal style and story.
                     </p>
 
                     <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
-                        <img src="5.png" alt="Local Artisan" style="height: 60px; margin-bottom: 10px;">
+                        <img src="./assets/5.png" alt="Local Artisan" style="height: 60px; margin-bottom: 10px;">
                         <strong>2. Local Artisan Collaborations</strong><br>
                         We partner with talented local makers to create limited-edition collections that celebrate cultural craftsmanship and support community livelihoods.
                     </p>
@@ -566,13 +556,13 @@ style="height: auto; width: 100%; background-image: url('8.png'); background-rep
                 <!-- Second Column -->
                 <div>
                     <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
-                        <img src="6.png" alt="Gift Packaging" style="height: 60px; margin-bottom: 10px;">
+                        <img src="./assets/6.png" alt="Gift Packaging" style="height: 60px; margin-bottom: 10px;">
                         <strong>3. Gift Packaging & Personalization</strong><br>
                         Add a special touch with our eco-friendly gift wrapping and custom message options—perfect for birthdays, celebrations, or thoughtful surprises.
                     </p>
 
                     <p style="padding: 2rem; display: flex; align-items: center; flex-direction: column;">
-                        <img src="7.png" alt="Sustainable Crafting" style="height: 60px; margin-bottom: 10px;">
+                        <img src="./assets/7.png" alt="Sustainable Crafting" style="height: 60px; margin-bottom: 10px;">
                         <strong>4. Sustainable Crafting Practices</strong><br>
                         We are committed to eco-friendly production methods, using sustainable materials and ethical practices to create accessories that are kind to both the earth and the artisans who make them.
                     </p>
