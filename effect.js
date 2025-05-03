@@ -296,36 +296,22 @@ document.getElementById('checkoutButton')?.addEventListener('click', function ()
 });
 
 
-
-
 function toggleDropdown() {
-  const dropdown = document.getElementById("accountDropdown");
+  const dropdown = document.getElementById("dropdownContent");
   dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 }
 
-// Optional: close dropdown when clicking outside
+
 document.addEventListener("click", function(event) {
-  const dropdown = document.getElementById("accountDropdown");
+  const dropdown = document.getElementById("dropdownContent");
   const brand = document.querySelector(".navbar-brand");
   if (!brand.contains(event.target)) {
     dropdown.style.display = "none";
   }
 });
 
-function toggleDropdown() {
-  var dropdown = document.getElementById("dropdownContent");
-  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-}
 
-// Optional: Close dropdown if clicked outside
-document.addEventListener("click", function(e) {
-  var dropdown = document.getElementById("dropdownContent");
-  var img = document.querySelector(".dropdown-container img");
-  if (!dropdown.contains(e.target) && e.target !== img) {
-    dropdown.style.display = "none";
-  }
-});
-document.querySelector("a[href='login.php']").addEventListener("click", function(e) {
-  // Ensure no preventDefault() is called
-  console.log("Redirecting to login.php");
+document.querySelector(".navbar-brand").addEventListener("click", function(e) {
+  toggleDropdown();  
+  e.preventDefault();
 });
