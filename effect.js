@@ -296,22 +296,19 @@ document.getElementById('checkoutButton')?.addEventListener('click', function ()
 });
 
 
-function toggleDropdown() {
+// Function to toggle the visibility of the dropdown
+function toggleDropdown(event) {
   const dropdown = document.getElementById("dropdownContent");
   dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  event.preventDefault();  // Prevent default action (following href="#")
 }
 
-
-document.addEventListener("click", function(event) {
+// Close dropdown when clicking outside of it
+document.addEventListener("click", function(e) {
   const dropdown = document.getElementById("dropdownContent");
-  const brand = document.querySelector(".navbar-brand");
-  if (!brand.contains(event.target)) {
-    dropdown.style.display = "none";
+  const dropdownContainer = document.querySelector(".dropdown-container");
+  
+  if (!dropdownContainer.contains(e.target)) {
+    dropdown.style.display = "none";  // Close the dropdown if clicked outside
   }
-});
-
-
-document.querySelector(".navbar-brand").addEventListener("click", function(e) {
-  toggleDropdown();  
-  e.preventDefault();
 });

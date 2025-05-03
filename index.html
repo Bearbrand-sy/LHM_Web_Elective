@@ -303,13 +303,14 @@ a:hover {
 
     </div>
     <div class="dropdown-container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="#" onclick="toggleDropdown(event)">
         <img src="account.png" alt="Logo" style="height:30px; margin-bottom: 2rem; margin-right: 1rem;">
       </a>
-      <div id="dropdownContent" class="dropdown-content">
-          <a href="login.php">Sign In</a> 
+      <div id="dropdownContent" class="dropdown-content" style="display: none;">
+        <button onclick="window.location.href='login.php'" style="color: #ff5a5a; background: transparent; border-radius: 5px; border: 1px solid #ff5a5a; width: 100%;">Sign In</button>
       </div>
     </div>
+    
   </nav>
   
 <body>
