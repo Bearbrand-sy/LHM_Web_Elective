@@ -230,6 +230,18 @@ include("connect.php");
     </div>
 
     <div class="input-group">
+        <label for="DOB">Date of Birth</label>
+        <i class="fas fa-calendar"></i>
+        <input type="date" name="DOB" id="DOB" required style="color: gray;">
+    </div>
+
+    <div class="input-group">
+        <label for="address">Place Address</label>
+        <i class="fas fa-map-marker-alt"></i>
+        <input type="text" name="address" id="address" required >
+    </div>
+
+    <div class="input-group">
         <label for="email">Email Address</label>
         <i class="fas fa-envelope"></i>
         <input type="email" name="email" id="email" placeholder="Email" required>
@@ -242,12 +254,13 @@ include("connect.php");
     </div>
 
     <div class="input-group1">
-    <input type="checkbox" id="showPassword" onclick="togglePassword()">
-    <label for="showPassword" style="display: inline-block; margin-left: 5px;">Show Password</label>
-</div>
+        <input type="checkbox" id="showPassword" onclick="togglePassword()">
+        <label for="showPassword" style="display: inline-block; margin-left: 5px;">Show Password</label>
+    </div>
 
     <input type="submit" class="btn" value="Sign up" name="signUp">
 </form>
+
     <p class="or">
         ---------or---------
     </p>

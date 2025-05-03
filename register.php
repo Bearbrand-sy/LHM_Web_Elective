@@ -5,17 +5,21 @@ session_start();
 if (isset($_POST['signUp'])) {
     $firstName = $_POST['fname'];
     $lastName = $_POST['lname'];
+    $DOB = $_POST['DOB'];
     $email = $_POST['email'];
     $password = $_POST['password']; 
+    $address = $_POST['address'];
 
+    // Check if email already exists
     $checkEmail = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($checkEmail);
 
     if ($result->num_rows > 0) {
         echo "<script>alert('Email Address Already Exists!'); window.location.href='register.php';</script>";
     } else {
-        $insertQuery = "INSERT INTO users (firstName, lastName, email, password) 
-                        VALUES ('$firstName', '$lastName', '$email', '$password')";
+        // Insert new user into the database without password hashing
+        $insertQuery = "INSERT INTO users (firstName, lastName, email, password, DOB, address) 
+                        VALUES ('$firstName', '$lastName', '$email', '$password', '$DOB', '$address')";
 
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
@@ -25,6 +29,7 @@ if (isset($_POST['signUp'])) {
         }
     }
 }
+
 
 if (isset($_POST['signIn'])) {
     $email = $_POST['email'];
