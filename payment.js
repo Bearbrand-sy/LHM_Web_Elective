@@ -135,8 +135,61 @@ function attemptBackNavigation(event, redirectUrl = 'product.html') {
   };
 }
 
-// Example: attach to a "Back" button
+
 const backBtn = document.getElementById('backToProductsBtn');
 if (backBtn) {
   backBtn.addEventListener('click', (e) => attemptBackNavigation(e));
+}
+
+function onModalConfirm() {
+  alert('Your payment has been confirmed. Thank you for your purchase!');
+  
+
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+
+  if (cart.length === 0) {
+    alert('Your cart is empty.');
+    return;
+  }
+
+
+  cart.forEach(item => {
+    const productName = item.name;
+    const productPrice = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+    
+    // Send the order data to the backend using fetch (AJAX)
+    fetch('order.php', {
+      method: 'POST',
+      body: new URLSearchParams({
+        'productName': productName,
+        'productPrice': productPrice
+      }),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+
+
+  localStorage.removeItem('cart');
+  
+  renderCart('cartItems', 'totalPrice');
+
+  document.getElementById('paymentForm').reset();
+  
+
+  ['cardInputContainer', 'gcashInputContainer', 'codInputContainer', 'addressContainer', 'postalCodeContainer'].forEach(id =>
+    document.getElementById(id)?.classList.add('d-none')
+  );
+
+
+  confirmationModal.hide();
 }

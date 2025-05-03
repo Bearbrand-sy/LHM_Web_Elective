@@ -312,3 +312,4 @@ document.addEventListener("click", function(e) {
     dropdown.style.display = "none";  // Close the dropdown if clicked outside
   }
 });
+

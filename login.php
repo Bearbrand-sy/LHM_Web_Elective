@@ -310,3 +310,29 @@ include("connect.php");
 </body>
 <script src="script.js"></script>
 </html>
+
+<?php
+include 'connect.php';
+session_start();
+
+if (isset($_POST['signIn'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password']; 
+
+    $sql = "SELECT * FROM users WHERE email=? AND password=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        $_SESSION['userID'] = $user['userID'];
+        $_SESSION['email'] = $user['email'];
+        header("Location: index2.html");
+        exit();
+    } else {
+        echo "<script>alert('Incorrect credentials.'); window.location='login.php';</script>";
+    }
+}
+?>
