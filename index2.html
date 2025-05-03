@@ -335,18 +335,18 @@ a:hover {
         </ul>
   
         <!-- Account image dropdown -->
-        <?php session_start(); ?>
+    
         <div class="dropdown-container d-flex align-items-center ms-auto mt-2 mt-lg-0" style="position: relative;">
           <img src="account.png" alt="Account" style="height: 30px; cursor: pointer;" onclick="toggleDropdown()">
           <div class="dropdown-content" id="dropdownContent" style="right: 0;">
-            <?php if (isset($_SESSION['email'])): ?>
-              <span style="padding: 10px; color: #333;"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+          
+              <span style="padding: 10px; color: #333;"></span>
               <a href="profile.php">Profile</a>
               <a href="orders.php">Orders</a>
               <form method="post" action="logout.php">
                 <button class="logout-btn" type="submit">Logout</button>
               </form>
-            <?php endif; ?>
+           
           </div>
         </div>
       </div>
