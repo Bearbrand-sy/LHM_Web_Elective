@@ -325,3 +325,7 @@ document.addEventListener("click", function(e) {
     dropdown.style.display = "none";
   }
 });
+document.querySelector("a[href='login.php']").addEventListener("click", function(e) {
+  // Ensure no preventDefault() is called
+  console.log("Redirecting to login.php");
+});
