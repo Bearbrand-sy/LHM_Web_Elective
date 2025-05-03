@@ -298,104 +298,29 @@ document.getElementById('checkoutButton')?.addEventListener('click', function ()
 
 
 
-// Sign-up form submission handler
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-  event.preventDefault();
+function toggleDropdown() {
+  const dropdown = document.getElementById("accountDropdown");
+  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
 
-  // Get the form input values
-  const username = document.getElementById('usernameInput').value;
-  const email = document.getElementById('emailInput').value;  // Optional, if you want to save email too
-  const password = document.getElementById('passwordInput').value;
-
-  // Save the user data in localStorage
-  localStorage.setItem('user', JSON.stringify({
-    username: username,
-    email: email,
-    password: password
-  }));
-
-  alert('Account created successfully!');
-  
-  // Close the sign-up modal
-  var signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-  signupModal.hide();
-
-  // Optionally, auto-open login modal after sign-up
-  var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-  loginModal.show();
-});
-
-// Login form submission handler
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  // Get the login input values
-  const loginUsername = document.getElementById('loginUsernameInput').value;
-  const loginPassword = document.getElementById('loginPasswordInput').value;
-
-  // Retrieve user data from localStorage
-  const userData = JSON.parse(localStorage.getItem('user'));
-
-  // Check if the credentials match
-  if (userData && userData.username === loginUsername && userData.password === loginPassword) {
-    alert('Login successful!');
-  } else {
-    alert('Invalid username or password.');
+// Optional: close dropdown when clicking outside
+document.addEventListener("click", function(event) {
+  const dropdown = document.getElementById("accountDropdown");
+  const brand = document.querySelector(".navbar-brand");
+  if (!brand.contains(event.target)) {
+    dropdown.style.display = "none";
   }
 });
 
-
-// Sign-up form submission handler
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  // Get the form input values
-  const username = document.getElementById('usernameInput').value;
-  const email = document.getElementById('emailInput').value;
-  const password = document.getElementById('passwordInput').value;
-
-  // Save the user data in localStorage
-  localStorage.setItem('user', JSON.stringify({
-    username: username,
-    email: email,
-    password: password
-  }));
-
-  // Close the sign-up modal
-  var signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-  signupModal.hide();
-
-  // Show an alert to inform the user that the account was created
-  alert('Your account has been created successfully! You can now log in.');
-});
-
-
-
-// Utility to update account icon dropdown with username
-function updateAccountUI(username) {
-  document.getElementById('loginIcon').style.display = 'none';
-  document.getElementById('accountDropdown').style.display = 'block';
-  document.getElementById('accountUsername').textContent = username;
+function toggleDropdown() {
+  const dropdown = document.getElementById('dropdownContent');
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
-// Load user data from localStorage on page load
-function loadUser() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.username) {
-    updateAccountUI(user.username);
-  } else {
-    document.getElementById('loginIcon').style.display = 'block';
-    document.getElementById('accountDropdown').style.display = 'none';
+// Hide dropdown if clicked outside
+window.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('dropdownContent');
+  if (!e.target.matches('img')) {
+    dropdown.style.display = 'none';
   }
-}
-
-// Logout function
-document.getElementById('logoutBtn').addEventListener('click', function () {
-  localStorage.removeItem('user');
-  location.reload(); // Reload to reset UI
 });
-
-// Run on page load
-window.onload = loadUser;
-
-
