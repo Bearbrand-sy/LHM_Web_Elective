@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | LHM Jewelry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        /* General Page Styling */
+body {
+    background-color: rgb(241, 241, 217);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Navbar links */
+.nav-link {
+    color: black;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ce5641;
+    text-decoration: underline;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Dropdown account icon */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown-content a,
+.dropdown-content form {
+    display: block;
+    text-decoration: none;
+    color: red;
+    padding: 10px;
+}
+
+.dropdown-content a:hover {
+    background-color: #eee;
+}
+
+.dropdown-container:hover .dropdown-content {
+    display: block;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Modal (if used on About page) */
+.modal-content {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.modal-header {
+    background-color: #ce5641;
+    color: white;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+/* Button styling */
+.btn {
+    border-color: #fa5353;
+}
+
+.btn:hover {
+    background-color: #fa5353;
+    border-color: #c22b2b;
+    color: white;
+}
+
+/* Link styling */
+a {
+    color: #fa5353;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Navbar Fix */
+@media (max-width: 992px) {
+    ul.navbar-nav {
+        margin-left: 0 !important;
+        justify-content: center;
+        width: 100%;
+    }
+}
+.about-section h1, 
+.about-section h3 {
+    color: #000000;
+}
+.about-section h2{
+  color: #ce5641;
+}
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.blockquote {
+    font-style: italic;
+    color: #666;
+    border-left: 5px solid #ce5641;
+    padding-left: 1rem;
+}
+
+@media (max-width: 768px) {
+    .about-section .row {
+        text-align: center;
+    }
+
+    .about-section img {
+        margin-top: 2rem;
+    }
+}
+.team-section h2 {
+  color: #ce5641;
+}
+
+.team-section img {
+  border: 3px solid #ce5641;
+  transition: transform 0.3s ease;
+}
+
+.team-section img:hover {
+  transform: scale(1.05);
+}
+
+.team-section p {
+  font-size: 0.95rem;
+}
+
+
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="./assets/logo.png" alt="Logo" style="height: 80px;">
+          </a>   
+      <div class="collapse navbar-collapse justify-content-center" id="mainNavbar" style="margin-left: 2.8rem; margin-right: 3rem;">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="product.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.html">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<body>
+    <section class="about-section container mt-5 mb-5">
+        <div class="text-center mb-4">
+          <h1 class="fw-bold">About LHM Jewelry</h1>
+          <p class="lead" style="color: #c22b2b; margin-bottom: 2rem;">A Local Accessory Brand to Enhance Beauty</p>
+        </div>
+      
+        <div class="row justify-content-center align-items-center mb-5">
+          <div class="col-md-6">
+            <img src="./assets/i.png" alt="Crafted accessories" class="img-fluid rounded" style="max-height: 300px; width:30rem;">
+           
+          </div>
+          <div class="col-md-6 text-center">
+            <p>
+
+              Discover the beauty of handcrafted expression with our locally made accessories. 
+              Each piece is a celebration of culture, creativity, and craftsmanship—designed to help 
+              you stand out while supporting our vibrant community of artisans.
+            </p>
+            <p>
+              Whether you're looking for something bold, elegant, or truly one-of-a-kind, 
+              you've come to the right place. Every item we offer is inspired by tradition 
+              and elevated with modern flair.
+            </p>
+          </div>
+        </div>
+      
+        <div class="text-center my-5">
+          <blockquote class="blockquote">
+            <p class="mb-0">"Discover the beauty of locally handcrafted accessories, where every piece tells a story and adds a touch of charm to your style."</p>
+          </blockquote>
+        </div>
+      
+        <section class="container my-5">
+          <div class="row text-center mb-5">
+            <div class="col-md-3 mb-3">
+              <div class="card h-100 border-0 shadow-sm hover-shadow" style="background-color: #fff; border-radius: 20px;">
+                <div class="card-body py-4"  style="border: 1px solid #c22b2b; border-radius: 15px;">
+                  <i class="bi bi-people-fill" style="font-size: 2rem; color: #ce5641;"></i>
+                  <h2 class="card-title mt-2 fw-bold" style="color: #ce5641;">139+</h2>
+                  <p class="card-text text-muted">Clients Served</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="card h-100 border-0 shadow-sm hover-shadow" style="background-color: #fff; border-radius: 20px;">
+                <div class="card-body py-4"  style="border: 1px solid #c22b2b; border-radius: 15px;">
+                  <i class="bi bi-emoji-smile-fill" style="font-size: 2rem; color: #ce5641;"></i>
+                  <h2 class="card-title mt-2 fw-bold" style="color: #ce5641;">97%</h2>
+                  <p class="card-text text-muted">Client Satisfaction</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="card h-100 border-0 shadow-sm hover-shadow" style="background-color: #fff; border-radius: 20px;">
+                <div class="card-body py-4"  style="border: 1px solid #c22b2b; border-radius: 15px;">
+                  <i class="bi bi-shop" style="font-size: 2rem; color: #ce5641;"></i>
+                  <h2 class="card-title mt-2 fw-bold" style="color: #ce5641;">5+</h2>
+                  <p class="card-text text-muted">Official Stores Nationwide</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="card h-100 border-0 shadow-sm hover-shadow" style="background-color: #fff; border-radius: 20px;">
+                <div class="card-body py-4" style="border: 1px solid #c22b2b; border-radius: 15px;">
+                  <i class="bi bi-megaphone-fill" style="font-size: 2rem; color: #ce5641;"></i>
+                  <h2 class="card-title mt-2 fw-bold" style="color: #ce5641;">10+</h2>
+                  <p class="card-text text-muted">Advertisements Launched</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+      
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Our Mission</h2>
+          <p>
+            We aim to uplift local artisans and promote sustainable fashion through quality accessories that make every customer feel unique, stylish, and connected to the culture.
+          </p>
+        </div>
+      </section>
+      
+
+      <section class="team-section container mb-5">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Meet the Team</h2>
+          <p class="text-muted">The creative minds behind LHM Jewelry</p>
+        </div>
+      
+        <div class="row justify-content-center text-center">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <img src="team1.jpg" alt="Founder" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+            <h5 class="fw-bold">Hiether Fhiona L.</h5>
+            <p class="text-muted">Founder & Project Manager</p>
+            <p>Hiether leads the brand's mission and vision with creativity, ensuring each collection reflects cultural artistry and modern style.</p>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <img src="team2.jpg" alt="Marketing Head" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+            <h5 class="fw-bold">Alliah Shane S.</h5>
+            <p class="text-muted">Marketing & Product Designer</p>
+            <p>Alliah crafts product designs and marketing strategies that celebrate uniqueness, empowering customers through beautiful accessories.</p>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <img src="team3.jpg" alt="Operations Manager" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+            <h5 class="fw-bold">Sander P.</h5>
+            <p class="text-muted">Production & Web Developer</p>
+            <p>Sander manages production logistics and web experience, making sure every order and page runs smoothly and efficiently.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section class="container">
+        <div class="text-center mt-5">
+          <h3>Contact Us</h3>
+          <p>Email: <a href="mailto:support@localaccessories.com">support@localaccessories.com</a></p>
+          <p>Phone: +63 912 345 6789</p>
+          <p>Address: 123 Sankanan, Manolo Fortich, Bukidnon, Philippines</p>
+        </div>
+      </section>
+
+</body>
+</html>
