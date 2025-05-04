@@ -232,7 +232,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
 
 <div class="split-container">
   <div class="profile-container">
-    <h1>Welcome to your Profile</h1>
+    <div class="profile-info">
+    <h1>Profile</h1>
+    </div>
+  
 
     <!-- Display First Name and Last Name -->
     <div class="profile-info">

@@ -35,6 +35,14 @@ if (isset($_POST['signIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password']; 
 
+    // Check if admin
+    if ($email === 'admin@gmail.com' && $password === 'admin') {
+        $_SESSION['email'] = $email;
+        echo "<script>alert('Admin login successful!'); window.location.href='admin.php';</script>";
+        exit();
+    }
+
+    // Regular user login
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
 

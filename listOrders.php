@@ -51,29 +51,144 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Your Orders</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-    /* Styling here remains the same as previous example */
+    body {
+      font-family: Arial, sans-serif;
+      background: rgb(241, 241, 217);
+      margin: 0;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid rgb(255, 117, 117);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .icon {
+  margin-right: 8px;
+  color: #ff7575;
+  vertical-align: middle;
+}
+
+    .order-card {
+      border: 1px solid #ccc;
+      border-left: 5px solid rgb(255, 117, 117);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background-color: #fafafa;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed #ddd;
+      font-size: 15px;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-summary {
+      text-align: right;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .back-button, .back {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      color: red;
+      border: 1px solid red;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-button:hover, .back:hover {
+      background: red;
+      color: white;
+    }
+    .orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #ffe5e5;
+  color: #333;
+}
+
+.orders-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
   </style>
 </head>
 <body>
 <div class="container">
     <h1>Your Orders</h1>
-    <p><strong>Name:</strong> <?php echo htmlspecialchars($userInfo['firstName']) . " " . htmlspecialchars($userInfo['lastName']); ?></p>
-    <p><strong>Email:</strong> <?php echo htmlspecialchars($userInfo['email']); ?></p>
+    <p><i class="fas fa-user icon"></i> <strong>Name:</strong> <?php echo htmlspecialchars($userInfo['firstName']) . " " . htmlspecialchars($userInfo['lastName']); ?></p>
+<p><i class="fas fa-envelope icon"></i> <strong>Email:</strong> <?php echo htmlspecialchars($userInfo['email']); ?></p>
 
-    <ul id="orders-list">
+
+<table class="orders-table">
+    <thead>
+        <tr>
+            <th>Order #</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Order Time</th>
+            <th>User ID</th>
+        </tr>
+    </thead>
+    <tbody>
         <?php 
         if (!empty($orderItems)) {
             foreach ($orderItems as $row) {
-                echo "<li id='item-{$row['orderItemID']}' data-name='" . htmlspecialchars($row['productName']) . "' data-price='{$row['productPrice']}'>
-                          <span>Order #{$row['orderItemID']} - " . htmlspecialchars($row['productName']) . " - ₱" . number_format($row['productPrice'], 2) . " - Order Time: " . htmlspecialchars($row['orderTime']) . " - User ID: " . $row['userID'] . "</span>
-                      </li>";
+                echo "<tr>
+                        <td>{$row['orderItemID']}</td>
+                        <td>" . htmlspecialchars($row['productName']) . "</td>
+                        <td>₱" . number_format($row['productPrice'], 2) . "</td>
+                        <td>" . htmlspecialchars($row['orderTime']) . "</td>
+                        <td>{$row['userID']}</td>
+                      </tr>";
             }
         } else {
-            echo "<li>No recent orders found.</li>";
+            echo "<tr><td colspan='5'>No recent orders found.</td></tr>";
         }
         ?>
-    </ul>
+    </tbody>
+</table>
+
 
     <a class="back" href="profile.php">← Back</a>
 </div>

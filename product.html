@@ -131,25 +131,22 @@
     </button>
   </div>
   
-<!-- Cart Items Modal -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered"> <!-- Centered Modal -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="cartItemsContainer"></div>
-        <p id="totalPrice"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary" id="checkoutButton">Checkout</button>
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signInModalLabel">Sign In Required</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>You need to sign in to proceed with the checkout.</p>
+          <a href="login.php" class="btn btn-primary">Go to Login</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
 
   
 
@@ -246,6 +243,6 @@
 
 </body>
 
-<script src="effect.js"> </script>
+<script src="effect2.js"> </script>
 
 </html>
