@@ -34,11 +34,11 @@
       "price": "₱120"
     },
     {
-      "name": "Earring 2",
+      "name": "Tribal Earrings",
       "type": "earring",
-      "image": "earring2.png",
+      "image": "ear2.png",
       "description": "Some quick example text for earring 2.",
-      "price": "₱40"
+      "price": "₱120"
     },
     {
       "name": "Earring 3",

@@ -76,12 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Modal Confirmation Logic
+// grab these once at top
 const confirmationModalEl = document.getElementById('confirmationModal');
+const confirmationModal = new bootstrap.Modal(confirmationModalEl);
 const confirmationMessageEl = document.getElementById('confirmationMessage');
 const modalConfirmBtn = document.getElementById('confirmPaymentButtonInModal');
 const triggerBtn = document.getElementById('confirmPaymentButton');
-const confirmationModal = new bootstrap.Modal(confirmationModalEl);
+
+// wire the “Confirm Payment” button to open the modal
+triggerBtn.addEventListener('click', e => {
+  e.preventDefault();
+  showConfirmationModal();
+});
 
 function showConfirmationModal() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -90,106 +96,56 @@ function showConfirmationModal() {
     return;
   }
 
-  const totalAmount = cart.reduce((sum, item) => {
-    return sum + parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
-  }, 0).toFixed(2);
+  const totalAmount = cart
+    .reduce((sum, item) => sum + parseFloat(item.price.replace(/[^0-9.-]+/g, "")), 0)
+    .toFixed(2);
 
-  confirmationMessageEl.innerText = `Are you sure you want to proceed with the payment of ₱${totalAmount}?`;
+  confirmationMessageEl.innerText =
+    `Are you sure you want to proceed with the payment of ₱${totalAmount}?`;
+
+  // ensure only one listener
+  modalConfirmBtn.replaceWith(modalConfirmBtn.cloneNode(true));
+  const freshConfirmBtn = document.getElementById('confirmPaymentButtonInModal');
+  freshConfirmBtn.addEventListener('click', onModalConfirm, { once: true });
+
   confirmationModal.show();
-
-  modalConfirmBtn.addEventListener('click', onModalConfirm, { once: true });
 }
 
 function onModalConfirm() {
-  alert('Your payment has been confirmed. Thank you for your purchase!');
-  
-  localStorage.removeItem('cart');                  // Clear cart from storage
-  renderCart('cartItems', 'totalPrice');            // Re-render cart UI
-  
-  document.getElementById('paymentForm').reset();   // Reset form
-
-  // Hide all input containers
-  ['cardInputContainer', 'gcashInputContainer', 'codInputContainer', 'addressContainer', 'postalCodeContainer'].forEach(id =>
-    document.getElementById(id)?.classList.add('d-none')
-  );
-
-  confirmationModal.hide();
-}
-
-triggerBtn?.addEventListener('click', function (event) {
-  event.preventDefault();
-  showConfirmationModal();
-});
-
-const backConfirmModalEl = document.getElementById('backConfirmModal');
-const confirmBackBtn = document.getElementById('confirmBackBtn');
-const backConfirmModal = new bootstrap.Modal(backConfirmModalEl);
-
-function attemptBackNavigation(event, redirectUrl = 'product.html') {
-  event.preventDefault();
-  backConfirmModal.show();
-
-  confirmBackBtn.onclick = function () {
-    localStorage.removeItem('cart');
-    window.location.href = redirectUrl;
-  };
-}
-
-
-const backBtn = document.getElementById('backToProductsBtn');
-if (backBtn) {
-  backBtn.addEventListener('click', (e) => attemptBackNavigation(e));
-}
-
-function onModalConfirm() {
-  alert('Your payment has been confirmed. Thank you for your purchase!');
-  
-
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  
-
   if (cart.length === 0) {
     alert('Your cart is empty.');
     return;
   }
 
+  // build an array of fetch-promises
+  const requests = cart.map(item => {
+    const params = new URLSearchParams();
+    params.append('productName', item.name);
+    params.append('productPrice', parseFloat(item.price.replace(/[^0-9.-]+/g, "")));
 
-  cart.forEach(item => {
-    const productName = item.name;
-    const productPrice = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
-    
-    // Send the order data to the backend using fetch (AJAX)
-    fetch('order.php', {
+    return fetch('order.php', {
       method: 'POST',
-      body: new URLSearchParams({
-        'productName': productName,
-        'productPrice': productPrice
-      }),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    }).then(res => res.json());
   });
 
+  // wait for all inserts to complete
+  Promise.all(requests)
+    .then(results => {
+      console.log('All items saved:', results);
+      localStorage.removeItem('cart');
+      renderCart('cartItems', 'totalPrice');
+      document.getElementById('paymentForm').reset();
+      ['cardInputContainer','gcashInputContainer','codInputContainer','addressContainer','postalCodeContainer']
+        .forEach(id => document.getElementById(id)?.classList.add('d-none'));
+      confirmationModal.hide();
 
-  localStorage.removeItem('cart');
-  
-  renderCart('cartItems', 'totalPrice');
-
-  document.getElementById('paymentForm').reset();
-  
-
-  ['cardInputContainer', 'gcashInputContainer', 'codInputContainer', 'addressContainer', 'postalCodeContainer'].forEach(id =>
-    document.getElementById(id)?.classList.add('d-none')
-  );
-
-
-  confirmationModal.hide();
+      window.location.href = 'order.php';
+    })
+    .catch(err => {
+      console.error('Error saving items:', err);
+      alert('There was an error placing your order. Please try again.');
+    });
 }

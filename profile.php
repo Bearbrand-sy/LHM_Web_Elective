@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background:rgb(92, 92, 92);
       padding: 40px;
       margin: 0;
     }
@@ -73,10 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
+      border: 1px solid rgb(255, 117, 117);
     }
     h1 {
       color: #333;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     .back {
       display: inline-block;
@@ -108,62 +109,86 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-    .edit-form button {
-      padding: 10px 20px;
-      background-color: green;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .edit-form button:hover {
-      background-color: darkgreen;
-    }
-  </style>
+    .update {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: rgb(99, 207, 49);
+    border: 1px solid rgb(99, 207, 49);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: 0.3s ease-in;
+  }
+
+  .cancel {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: rgb(62, 87, 170);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    border: 1px solid rgb(62, 87, 170);
+  }
+
+  .edit-form .update:hover {
+    background-color: rgb(99, 207, 49);
+    color: white;
+  }
+
+  .edit-form .cancel:hover {
+    background-color: darkblue;
+    color: white;
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Welcome to your Profile</h1>
-    
-    <!-- Display First Name and Last Name -->
-    <div class="profile-info">
-      <p><strong>First Name:</strong> <?php echo htmlspecialchars($_SESSION['firstName']); ?></p>
-      <p><strong>Last Name:</strong> <?php echo htmlspecialchars($_SESSION['lastName']); ?></p>
-    </div>
-    
-    <!-- Display Date of Birth -->
-    <div class="profile-info">
-      <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($_SESSION['DOB']); ?></p>
-    </div>
-    
-    <!-- Display Address -->
-    <div class="profile-info">
-      <p><strong>Address:</strong> <?php echo htmlspecialchars($_SESSION['address']); ?></p>
-    </div>
-    
-    <!-- Display Email -->
-    <div class="profile-info">
-      <p><strong>Email:</strong> <?php echo htmlspecialchars($_SESSION['email']); ?></p>
-    </div>
+<div class="container">
+  <h1>Welcome to your Profile</h1>
 
-    <!-- Edit Button to open the edit form -->
-    <a href="profile.php?edit=true" class="back">Edit Profile</a>
-    
-    <!-- Edit Form (when the 'edit' query parameter is set) -->
-    <?php if (isset($_GET['edit']) && $_GET['edit'] == 'true'): ?>
-      <h2>Edit Profile</h2>
-      <form class="edit-form" method="post">
-        <input type="text" name="firstName" value="<?php echo htmlspecialchars($_SESSION['firstName']); ?>" required>
-        <input type="text" name="lastName" value="<?php echo htmlspecialchars($_SESSION['lastName']); ?>" required>
-        <input type="date" name="DOB" value="<?php echo htmlspecialchars($_SESSION['DOB']); ?>" required>
-        <input type="text" name="address" value="<?php echo htmlspecialchars($_SESSION['address']); ?>" required>
-        <button type="submit" name="update">Update Profile</button>
-      </form>
-    <?php endif; ?>
-
-    <!-- Back Button -->
-    <a class="back" href="index2.html">← Back to Home</a>
+  <!-- Display First Name and Last Name -->
+  <div class="profile-info">
+    <p><strong>First Name:</strong> <?php echo htmlspecialchars($_SESSION['firstName']); ?></p>
+    <p><strong>Last Name:</strong> <?php echo htmlspecialchars($_SESSION['lastName']); ?></p>
   </div>
+
+  <!-- Display Date of Birth -->
+  <div class="profile-info">
+    <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($_SESSION['DOB']); ?></p>
+  </div>
+
+  <!-- Display Address -->
+  <div class="profile-info">
+    <p><strong>Address:</strong> <?php echo htmlspecialchars($_SESSION['address']); ?></p>
+  </div>
+
+  <!-- Display Email -->
+  <div class="profile-info">
+    <p><strong>Email:</strong> <?php echo htmlspecialchars($_SESSION['email']); ?></p>
+  </div>
+
+  <!-- Edit Button -->
+  <a href="profile.php?edit=true" class="back">Edit Profile</a>
+
+  <!-- Edit Form -->
+  <?php if (isset($_GET['edit']) && $_GET['edit'] == 'true'): ?>
+    <p stlye="width: auto; margin-right:1rem;">____________________________________________________________________</p>
+    <h2>Edit Profile</h2>
+  <form class="edit-form" method="post">
+    <input type="text" name="firstName" value="<?php echo htmlspecialchars($_SESSION['firstName']); ?>" required>
+    <input type="text" name="lastName" value="<?php echo htmlspecialchars($_SESSION['lastName']); ?>" required>
+    <input type="date" name="DOB" value="<?php echo htmlspecialchars($_SESSION['DOB']); ?>" required>
+    <input type="text" name="address" value="<?php echo htmlspecialchars($_SESSION['address']); ?>" required>
+    <button type="submit" class="update" name="update">Update Profile</button>
+    <button type="button" class="cancel" onclick="window.location.href='profile.php'">Cancel</button>
+  </form>
+  <?php endif; ?>
+
+  <!-- Back Button -->
+  <a class="back" href="index2.html">← Back to Home</a>
+</div>
 </body>
 </html>

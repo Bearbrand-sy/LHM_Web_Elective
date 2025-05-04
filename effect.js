@@ -33,17 +33,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const products = [
   { "name": "3-colored Beads Bracelet", "type": "bracelet", "image": "./assets/brace1.png", "price": "₱50" },
-  { "name": "Necklace 1", "type": "necklace", "image": "./assets/neck1.png", "description": "Some quick example text for necklace 1.", "price": "₱100" },
-  { "name": "Earring 1", "type": "earring", "image": "./assets/ear1.png", "description": "Some quick example text for earring 1.", "price": "₱30" },
+  { "name": "3-colored Necklace", "type": "necklace", "image": "./assets/neck1.png", "price": "₱100" },
+  { "name": "Red Black Earrings", "type": "earring", "image": "./assets/ear1.png",  "price": "₱90" },
   { "name": "Black Bracelet", "type": "bracelet", "image": "./assets/brace2.png", "price": "₱60" },
-  { "name": "Necklace 2", "type": "necklace", "image": "./assets/necklace2.png", "description": "Some quick example text for necklace 2.", "price": "₱120" },
-  { "name": "Earring 2", "type": "earring", "image": "./assets/earring2.png", "description": "Some quick example text for earring 2.", "price": "₱40" },
-  { "name": "Earring 3", "type": "earring", "image": "./assets/earring3.png", "description": "Some quick example text for earring 3.", "price": "₱50" },
-  { "name": "Earring 4", "type": "earring", "image": "./assets/earring4.png", "description": "Some quick example text for earring 4.", "price": "₱80" },
+  { "name": "Cat Face bracelet", "type": "bracelet", "image": "./assets/brace5.png", "price": "₱120" },
+  { "name": "Tribal Earrings", "type": "earring", "image": "./assets/ear2.png",  "price": "₱40" },
+  { "name": "White Pearl Bracelet", "type": "bracelet", "image": "./assets/brace6.png", "price": "₱85" },
+  { "name": "Philippines Style Earring ", "type": "earring", "image": "./assets/ear3.png",  "price": "₱80" },
   { "name": "Flower Bead Bracelet ", "type": "bracelet", "image": "./assets/brace3.png",  "price": "₱100" },
-  { "name": "Necklace 3", "type": "necklace", "image": "./assets/necklace3.png", "description": "Some quick example text for necklace 3.", "price": "₱120" },
-  { "name": "Necklace 4", "type": "necklace", "image": "./assets/necklace4.png", "description": "Some quick example text for necklace 4.", "price": "₱140" },
-  { "name": "Heart Black Bracelet", "type": "bracelet", "image": "./assets/brace4.png", "description": "Some quick example text for bracelet 4.", "price": "₱90" }
+  { "name": "Spiral Bead Necklace", "type": "necklace", "image": "./assets/neck2.png", "price": "₱120" },
+  { "name": "Sunflower Necklace", "type": "necklace", "image": "./assets/neck3.png",  "price": "₱140" },
+  { "name": "Heart Black Bracelet", "type": "bracelet", "image": "./assets/brace4.png", "price": "₱90" }
 ];
 
 const cardContainer = document.getElementById('cardContainer');
