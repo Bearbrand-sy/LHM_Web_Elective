@@ -100,7 +100,7 @@ function showConfirmationModal() {
     .reduce((sum, item) => sum + parseFloat(item.price.replace(/[^0-9.-]+/g, "")), 0)
     .toFixed(2);
 
-  confirmationMessageEl.innerText =
+  confirmationMessageEl.innerText = 
     `Are you sure you want to proceed with the payment of ₱${totalAmount}?`;
 
   // ensure only one listener
@@ -118,11 +118,15 @@ function onModalConfirm() {
     return;
   }
 
-  // build an array of fetch-promises
+  // Get the current timestamp
+  const timestamp = new Date().toISOString(); // You can adjust the format as needed
+
+  // Build an array of fetch-promises with the timestamp included
   const requests = cart.map(item => {
     const params = new URLSearchParams();
     params.append('productName', item.name);
     params.append('productPrice', parseFloat(item.price.replace(/[^0-9.-]+/g, "")));
+    params.append('timestamp', timestamp); // Add timestamp to the request
 
     return fetch('order.php', {
       method: 'POST',
@@ -131,18 +135,22 @@ function onModalConfirm() {
     }).then(res => res.json());
   });
 
-  // wait for all inserts to complete
+  // Wait for all inserts to complete
   Promise.all(requests)
     .then(results => {
       console.log('All items saved:', results);
       localStorage.removeItem('cart');
       renderCart('cartItems', 'totalPrice');
       document.getElementById('paymentForm').reset();
-      ['cardInputContainer','gcashInputContainer','codInputContainer','addressContainer','postalCodeContainer']
+      ['cardInputContainer', 'gcashInputContainer', 'codInputContainer', 'addressContainer', 'postalCodeContainer']
         .forEach(id => document.getElementById(id)?.classList.add('d-none'));
       confirmationModal.hide();
 
-      window.location.href = 'order.php';
+      // Display confirmation message alert
+      alert('Your order has been placed successfully! You will be redirected to the product page.');
+
+      // Redirect to product2.html
+      window.location.href = 'product2.html';
     })
     .catch(err => {
       console.error('Error saving items:', err);

@@ -193,7 +193,7 @@ li .delete-button:hover {
   <strong>Total Amount: ₱<span id="total-amount"><?php echo number_format($totalAmount, 2); ?></span></strong>
 </p>
 
-<a class="back" href="index2.html">← Back to Home</a>
+<a class="back" href="profile.php">← Back</a>
 </div>
 </body>
 
