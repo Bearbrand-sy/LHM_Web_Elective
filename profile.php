@@ -163,22 +163,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     background-color: darkblue;
     color: white;
   }
-  /* Container for profile info */
+ 
 .profile-info {
   display: flex;
-  align-items: center; /* Align items horizontally */
-  margin-bottom: 15px; /* Add some space between sections */
+  align-items: center; 
+  margin-bottom: 15px; 
 }
 
 .profile-info i {
-  font-size: 24px; /* Make icons larger */
-  margin-right: 10px; /* Space between the icon and the text */
-  color:rgb(255, 99, 99); /* Set color for the icons */
+  font-size: 24px; 
+  margin-right: 10px; 
+  color:rgb(255, 99, 99); 
 }
 
 .profile-info p {
-  font-size: 16px; /* Set font size for the text */
-  margin: 0; /* Remove extra margin */
+  font-size: 16px; 
+  margin: 0; 
 }
 
 .profile-info strong {
@@ -272,7 +272,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     <a href="product2.html?edit=true" class="purchase">Purchase More</a>
     <a href="profile.php?edit=true" class="edit">Edit Profile</a>
     <a class="back" href="index2.html">← Back to Home</a>
-    <a class="orders" href="listOrders.php">←Orders</a>
   </div>
  
   <?php if (isset($_GET['edit']) && $_GET['edit'] == 'true'): ?>

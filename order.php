@@ -62,7 +62,7 @@ $conn->close();
   <meta charset="UTF-8">
   <title>Your Orders</title>
   <style>
-    /* General body styling */
+    
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -71,7 +71,7 @@ body {
   color: #333;
 }
 
-/* Container for the page content */
+
 .container {
   width: 100%;
   max-width: 800px;
@@ -83,14 +83,14 @@ body {
   border: 1px solid rgb(255, 110, 110);
 }
 
-/* Heading styles */
+
 h1 {
   font-size: 28px;
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Styling the orders list */
+
 ul {
   list-style-type: none;
   padding-left: 0;
@@ -179,9 +179,10 @@ li .delete-button:hover {
   if (!empty($orderItems)) {
     foreach ($orderItems as $row) {
       echo "<li id='item-{$row['orderItemID']}' data-name='" . htmlspecialchars($row['productName']) . "' data-price='{$row['productPrice']}'>
-              <span>Item #{$row['orderItemID']} - " . htmlspecialchars($row['productName']) . " - ₱" . number_format($row['productPrice'], 2) . "</span>
-              <button class='delete-button' data-id='{$row['orderItemID']}'>Cancel</button>
-            </li>";
+        <span>" . htmlspecialchars($row['productName']) . " - ₱" . number_format($row['productPrice'], 2) . "</span>
+        <button class='delete-button' data-id='{$row['orderItemID']}'>Cancel</button>
+      </li>";
+
     }
   } else {
     echo "<li>No recent orders found.</li>";

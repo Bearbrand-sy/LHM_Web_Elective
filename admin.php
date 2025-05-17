@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 // Fetch all users
 $users = $conn->query("SELECT userID, firstName, lastName, email FROM users");
 
-// Fetch all order_items joined to users to get userID
+// Fetch all order_items joined to users to get userID 
 $orders = $conn->query(
     "SELECT 
         oi.orderItemID,
@@ -24,45 +24,46 @@ $orders = $conn->query(
         oi.orderTime,
         u.userID,
         oi.email
-     FROM order_items oi
+     FROM order_items oi 
      JOIN users u ON oi.email = u.email
      ORDER BY oi.orderItemID DESC"
 );
 
-// Insert data into orders table when admin clicks the button
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['insert_orders'])) {
-    $stmt = $conn->prepare(
-        "INSERT INTO orders (productName, productPrice, orderTime, userID, email, orderItemID)
-        VALUES (?, ?, ?, ?, ?, ?)"
-    );
+// Automatically insert order_items into orders table if not already inserted
+$ordersData = $conn->query(
+  "SELECT 
+      oi.productName,
+      oi.productPrice,
+      oi.orderTime,
+      u.userID,
+      oi.email,
+      oi.orderItemID
+   FROM order_items oi
+   JOIN users u ON oi.email = u.email
+   LEFT JOIN orders o ON oi.orderItemID = o.orderItemID
+   WHERE o.orderItemID IS NULL"
+);
 
-    $ordersData = $conn->query(
-        "SELECT 
-            oi.productName,
-            oi.productPrice,
-            oi.orderTime,
-            u.userID,
-            oi.email,
-            oi.orderItemID
-        FROM order_items oi
-        JOIN users u ON oi.email = u.email"
-    );
+if ($ordersData->num_rows > 0) {
+  $stmt = $conn->prepare(
+      "INSERT INTO orders (productName, productPrice, orderTime, userID, email, orderItemID)
+      VALUES (?, ?, ?, ?, ?, ?)"
+  );
 
-    while ($order = $ordersData->fetch_assoc()) {
-        $stmt->bind_param(
-            "sssdss",
-            $order['productName'],
-            $order['productPrice'],
-            $order['orderTime'],
-            $order['userID'],
-            $order['email'],
-            $order['orderItemID']
-        );
-        $stmt->execute();
-    }
+  while ($order = $ordersData->fetch_assoc()) {
+      $stmt->bind_param(
+          "sssdss",
+          $order['productName'],
+          $order['productPrice'],
+          $order['orderTime'],
+          $order['userID'],
+          $order['email'],
+          $order['orderItemID']
+      );
+      $stmt->execute();
+  }
 
-    $stmt->close();
-    $successMessage = "Orders have been successfully inserted into the orders table.";
+  $stmt->close();
 }
 
 
@@ -173,10 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
       <?php endwhile; ?>
     </table>
 
-    <!-- Insert Orders Button -->
-    <form method="post">
-      <button type="submit" name="insert_orders" class="button">Add Data</button>
-    </form>
+    <?php if (isset($successMessage)): ?>
+<script>
+    alert("<?= addslashes($successMessage) ?>");
+</script>
+<?php endif; ?>
 
     <!-- Logout Button -->
     <form method="post" style="display:inline;">
