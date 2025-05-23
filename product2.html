@@ -71,6 +71,32 @@
     margin-left: 0 !important;
   }
 }
+ #cartModal .modal-content {
+    border: 1.5px solid tomato;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  #cartModal .modal-header,
+  #cartModal .modal-footer {
+    background-color: #fff5f0;
+  }
+
+  #cartModal .modal-title {
+    color: tomato;
+    font-weight: bold;
+  }
+
+  #cartModal .btn-primary {
+    background-color: tomato;
+    border-color: tomato;
+  }
+
+  #cartModal .btn-primary:hover {
+    background-color: #e5533f;
+    border-color: #e5533f;
+  }
+
     </style>
 </head>
 
@@ -237,6 +263,37 @@
         <a href="payment.html"><button type="button" class="btn btn-primary">Checkout</button></a> 
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Buy Now Confirmation Modal -->
+<div class="modal fade" id="buyNowConfirmModal" tabindex="-1" aria-labelledby="buyNowConfirmLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 10px; border: 2px solid #ce5641; background-color: #fffaf7;">
+      <div class="modal-header" style="border-bottom: 1px solid #ce5641;">
+        <h5 class="modal-title fw-bold text-success" id="buyNowConfirmLabel">Confirm Purchase</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: brightness(0) saturate(100%) invert(29%) sepia(54%) saturate(1039%) hue-rotate(325deg) brightness(89%) contrast(95%);"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row align-items-center">
+          <div class="col-4 text-center">
+            <img id="confirmItemImage" src="" alt="Product Image" 
+                 style="width: 100%; max-height: 150px; object-fit: contain; border-radius: 8px; ">
+          </div>
+          <div class="col-8">
+            <p class="mb-2"><strong class="text-dark">Item:</strong> <span id="confirmItemName" class="text-muted"></span></p>
+            <p class="mb-3"><strong class="text-dark">Price:</strong> <span id="confirmItemPrice" class="text-muted"></span></p>
+            <p class="text-secondary small">Do you want to proceed to checkout with this item?</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+ <button type="button" class="btn btn-outline-success" id="confirmBuyNowBtn">
+  Yes, Buy Now
+</button>
+</div>
     </div>
   </div>
 </div>

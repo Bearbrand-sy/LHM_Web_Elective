@@ -136,7 +136,6 @@ function showModal(product) {
 let cart = [];
 
 function renderCards(data) {
-  const cardContainer = document.getElementById('cardContainer');
   cardContainer.innerHTML = data.length ? '' : '<p>No items found.</p>';
 
   data.forEach((item, index) => {
@@ -145,20 +144,21 @@ function renderCards(data) {
         <div class="card h-100" style="border: 1px solid #ce5641; border-radius: 5px; background-color: rgb(238, 238, 224);">
           <img src="${item.image}" class="card-img-top" alt="${item.name}" style="height: 10rem; object-fit: contain;">
           <div class="card-body">
-            <h5 class="card-title" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;">${item.name}</h5>
-            <p  style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;"><strong>Price:</strong> ${item.price}</p>
-            <button class="btn add-to-cart-btn" data-name="${item.name}" data-price="${item.price}" data-img="${item.image}" 
-                    style="background-color:rgb(238, 156, 131); color: white; border: none; padding: 10px 20px; font-size: 12px; 
-                    border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.3s;">
+            <h5 class="card-title">${item.name}</h5>
+            <p><strong>Price:</strong> ${item.price}</p>
+            <button class="btn add-to-cart-btn" data-name="${item.name}" data-price="${item.price}" data-img="${item.image}"
+                    style="background-color:rgb(238, 156, 131); color: white;">
               Add to Cart
             </button>
-            <a href="#" class="btn float-end buy-now-btn" style="background-color:rgb(51, 161, 43); color:rgb(255, 255, 255)" data-index="${index}">Buy Now</a>
+            <a href="#" class="btn float-end buy-now-btn"
+               style="background-color:rgb(51, 161, 43); color:white;"
+               data-index="${index}">
+              Buy Now
+            </a>
           </div>
         </div>
       </div>`;
   });
-
-
 
   document.querySelectorAll('.buy-now-btn').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -169,23 +169,26 @@ function renderCards(data) {
   });
 }
 
-function showModal(product, callback = null) {
-  document.getElementById('modalName').textContent = product.name;
-  document.getElementById('modalDescription').textContent = product.description;
-  document.getElementById('modalPrice').textContent = product.price;
-  document.getElementById('modalImage').src = product.image;
-  document.getElementById('modalImage').alt = product.name;
+function showModal(product) {
+  document.getElementById('confirmItemName').textContent = product.name;
+  document.getElementById('confirmItemPrice').textContent = product.price;
+  document.getElementById('confirmItemImage').src = product.image;
+  document.getElementById('confirmItemImage').alt = product.name;
 
-  const modal = new bootstrap.Modal(document.getElementById('buyNowModal'));
-  modal.show();
+  const confirmModal = new bootstrap.Modal(document.getElementById('buyNowConfirmModal'));
+  confirmModal.show();
 
-  if (callback) {
-    setTimeout(() => {
-      modal.hide();
-      callback();
-    }, 3000);
-  }
+  window.selectedBuyNowProduct = product; // Store product temporarily
 }
+
+
+document.getElementById('confirmBuyNowBtn').addEventListener('click', function () {
+  const product = window.selectedBuyNowProduct;
+  if (product) {
+    addItemToCartAndGoToCheckout(product);
+  }
+});
+
 
 function addItemToCartAndGoToCheckout(product) {
   const existing = cart.find(item => item.name === product.name);
@@ -194,7 +197,6 @@ function addItemToCartAndGoToCheckout(product) {
 
   saveCart();
   updateCartCount();
-  alert(`${product.name} added to cart!`);
   window.location.href = "payment.html";
 }
 
